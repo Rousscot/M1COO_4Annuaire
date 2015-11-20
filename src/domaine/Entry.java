@@ -15,20 +15,20 @@ public class Entry {
 
     protected Long id;
 
-    protected String last_name;
+    protected String lastName;
 
-    protected String first_name;
+    protected String firstName;
 
     protected Set<Number> numbers;
 
-    public Entry(String last_name, String first_name) {
-        this(Long.valueOf(0), last_name, first_name);
+    public Entry(String lastName, String firstName) {
+        this(Long.valueOf(0), lastName, firstName);
     }
 
-    public Entry(Long id, String last_name, String first_name) {
+    public Entry(Long id, String lastName, String firstName) {
         this.id = id;
-        this.last_name = last_name;
-        this.first_name = first_name;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.numbers = new HashSet();
     }
 
@@ -58,20 +58,20 @@ public class Entry {
         this.id = id_entry;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setNumbers(Set<Number> numbers) {

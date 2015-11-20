@@ -1,6 +1,7 @@
 package dao;
 
 import dao.exception.DAOCannotInsertException;
+import dao.exception.DAODeleteException;
 import dao.exception.DAONotFoundException;
 import dao.exception.DAOUpdateFailedException;
 import dao.exception.delete.NumberDeleteException;
@@ -45,7 +46,7 @@ public abstract class DAO<T> {
      * @param obj the object to delete.
      * @throws NumberDeleteException I am raised if the method cannot delete the object from the database.
      */
-    public abstract void delete(T obj) throws NumberDeleteException;
+    public abstract void delete(T obj) throws DAODeleteException;
 
 
     /**

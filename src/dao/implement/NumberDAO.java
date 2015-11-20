@@ -3,7 +3,7 @@ package dao.implement;
 import dao.DAO;
 import dao.exception.delete.NumberDeleteException;
 import dao.exception.find.NumberNotFoundInDBException;
-import dao.exception.insert.NumberInsertCustomerException;
+import dao.exception.insert.NumberInsertException;
 import dao.exception.update.NumberUpdateFailedException;
 import domaine.Entry;
 import domaine.Number;
@@ -17,12 +17,8 @@ import java.sql.SQLException;
  */
 public class NumberDAO extends DAO<Number> {
 
-    public NumberDAO() {
-        super();
-    }
-
     @Override
-    public Number create(Number number) throws NumberInsertCustomerException {
+    public Number create(Number number) throws NumberInsertException {
         String idRequest = "SELECT NEXTVAL('number_id_seq') AS id";
         try {
 
@@ -44,7 +40,7 @@ public class NumberDAO extends DAO<Number> {
                 number = this.find(id);
             }
         } catch (SQLException e) {
-            throw new NumberInsertCustomerException(number);
+            throw new NumberInsertException(number);
         }
         return number;
     }
@@ -57,7 +53,6 @@ public class NumberDAO extends DAO<Number> {
         } catch (SQLException e) {
             throw new NumberDeleteException(number);
         }
-
     }
 
     @Override
