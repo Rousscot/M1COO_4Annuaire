@@ -1,6 +1,7 @@
 package dao.exception.delete;
 
 import dao.exception.DAODeleteException;
+import domaine.Number;
 
 /**
  * I am an exception raised if the deletion of a Number into the database fail.

@@ -1,6 +1,7 @@
 package dao.exception.update;
 
 import dao.exception.DAOUpdateFailedException;
+import domaine.Number;
 
 /**
  * I am an exception raised when the DAO cannot update a Number into the database.

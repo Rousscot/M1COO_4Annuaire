@@ -1,6 +1,7 @@
 package dao.exception.insert;
 
 import dao.exception.DAOCannotInsertException;
+import domaine.Number;
 
 /**
  * I am an exception raised if the DAO cannot insert a Number ino the database.
