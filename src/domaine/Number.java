@@ -6,14 +6,24 @@ package domaine;
  * This class represents a entry of an entry.
  */
 public class Number {
+
     protected Long id;
+
     protected String code;
+
     protected String value;
 
-    public Number(Long id, String code, String value) {
+    protected Entry entry;
+
+    public Number(String code, String value, Entry entry) {
+        this(Long.valueOf(0), code, value,entry);
+    }
+
+    public Number(Long id, String code, String value, Entry entry) {
         this.id = id;
         this.code = code;
         this.value = value;
+        this.entry = entry;
     }
 
     public Long getId() {
@@ -38,5 +48,17 @@ public class Number {
 
     public String getValue() {
         return value;
+    }
+
+    public Entry getEntry() {
+        return entry;
+    }
+
+    public void setEntry(Entry entry) {
+        this.entry = entry;
+    }
+
+    public long getEntryId() {
+        return this.entry.getId();
     }
 }
