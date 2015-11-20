@@ -6,21 +6,22 @@ package domaine;
  * This class represents a number of an entry.
  */
 public class Number {
-    protected int id_number;
+    protected Long id;
     protected String code;
     protected String value;
 
-    public Number(String code, String value) {
+    public Number(Long id, String code, String value) {
+        this.id = id;
         this.code = code;
         this.value = value;
     }
 
-    public int getId_number() {
-        return id_number;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_number(int id_number) {
-        this.id_number = id_number;
+    public void setId(Long id_number) {
+        this.id = id_number;
     }
 
     public void setCode(String code) {
