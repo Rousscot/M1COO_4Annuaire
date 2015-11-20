@@ -7,9 +7,9 @@ import dao.exception.DAONotFoundException;
  *
  * @author Cyril Ferlicot and Aurelien Rousseau
  */
-public class NumberNotFoundException extends DAONotFoundException {
+public class NumberNotFoundInDBException extends DAONotFoundException {
 
-    public NumberNotFoundException(Long id) {
+    public NumberNotFoundInDBException(Long id) {
         super(id);
     }
 

@@ -1,27 +1,27 @@
 package dao.exception.delete;
 
 import dao.exception.DAODeleteException;
-import domaine.Number;
+import domaine.Entry;
 
 /**
- * I am an exception raised if the deletion of a Number into the database fail.
+ * I am an exception raised if the deletion of an Entry into the database fail.
  *
  * @author Cyril Ferlicot and Aurelien Rousseau
  */
-public class NumberDeleteException extends DAODeleteException {
+public class EntryDeleteException extends DAODeleteException {
 
     /**
      * I am the entry that the DAO tried to delete.
      */
-    protected final Number number;
+    protected final Entry entry;
 
     /**
      * I am the constructor.
      *
-     * @param number is the entry I tried to delete.
+     * @param entry is the entry I tried to delete.
      */
-    public NumberDeleteException(Number number) {
-        this.number = number;
+    public EntryDeleteException(Entry entry) {
+        this.entry = entry;
     }
 
     /**
@@ -29,7 +29,7 @@ public class NumberDeleteException extends DAODeleteException {
      *
      * @return the entry the DAO tried to delete.
      */
-    public Number number() {
-        return number;
+    public Entry entry() {
+        return entry;
     }
 }

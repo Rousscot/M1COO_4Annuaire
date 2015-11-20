@@ -11,23 +11,23 @@ import domaine.Number;
 public class NumberUpdateFailedException extends DAOUpdateFailedException {
 
     /**
-     * The number the DAO tried to update.
+     * The entry the DAO tried to update.
      */
     protected final Number number;
 
     /**
      * I am the constructor.
      *
-     * @param number the number the DAO tried to update.
+     * @param number the entry the DAO tried to update.
      */
     public NumberUpdateFailedException(Number number) {
         this.number = number;
     }
 
     /**
-     * I am a getter to get the number the DAO tried to update.
+     * I am a getter to get the entry the DAO tried to update.
      *
-     * @return the number the DAO tried to update.
+     * @return the entry the DAO tried to update.
      */
     public Number number() {
         return this.number;

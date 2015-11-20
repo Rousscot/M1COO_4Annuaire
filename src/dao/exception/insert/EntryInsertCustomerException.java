@@ -1,27 +1,27 @@
 package dao.exception.insert;
 
 import dao.exception.DAOCannotInsertException;
-import domaine.Number;
+import domaine.Entry;
 
 /**
- * I am an exception raised if the DAO cannot insert a Number ino the database.
+ * I am an exception raised if the DAO cannot insert an Entry ino the database.
  *
  * @author Cyril Ferlicot and Aurelien Rousseau
  */
-public class NumberInsertCustomerException extends DAOCannotInsertException {
+public class EntryInsertCustomerException extends DAOCannotInsertException {
 
     /**
      * The entry the DAO tried to insert into the database.
      */
-    protected final Number number;
+    protected final Entry entry;
 
     /**
      * I am the constructor of the exception.
      *
-     * @param number the entry the DAO tried to insert into the database.
+     * @param entry the entry the DAO tried to insert into the database.
      */
-    public NumberInsertCustomerException(Number number) {
-        this.number = number;
+    public EntryInsertCustomerException(Entry entry) {
+        this.entry = entry;
     }
 
     /**
@@ -29,7 +29,7 @@ public class NumberInsertCustomerException extends DAOCannotInsertException {
      *
      * @return a Customer the DAO tried to add to the database
      */
-    public Number number() {
-        return number;
+    public Entry entry() {
+        return entry;
     }
 }

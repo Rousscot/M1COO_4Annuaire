@@ -3,7 +3,7 @@ package domaine;
 /**
  * Created by rousseau & ferlicot on 20/11/15.
  * <p>
- * This class represents a number of an entry.
+ * This class represents a entry of an entry.
  */
 public class Number {
     protected Long id;
