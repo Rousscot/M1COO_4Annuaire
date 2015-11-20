@@ -71,7 +71,7 @@ public class NumberDAO extends DAO<Number> {
         try {
             ResultSet result = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(request);
             if (result.first()) {
-                return new Number(id, result.getString("code"), result.getString("value");
+                return new Number(id, result.getString("code"), result.getString("value"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
