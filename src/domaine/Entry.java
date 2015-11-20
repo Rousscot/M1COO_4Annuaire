@@ -1,4 +1,4 @@
-package java.domaine;
+package domaine;
 
 /**
  * Created by rousseau & ferlicot on 20/11/15.
