@@ -15,6 +15,14 @@ public class Entry {
         this.first_name = prenom;
     }
 
+    public int getId_entry() {
+        return id_entry;
+    }
+
+    public void setId_entry(int id_entry) {
+        this.id_entry = id_entry;
+    }
+
     public String getLast_name() {
         return last_name;
     }
