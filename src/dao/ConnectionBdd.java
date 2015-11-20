@@ -16,9 +16,9 @@ import java.sql.SQLException;
  */
 public class ConnectionBdd {
 
-    protected String url = "jdbc:postgresql://postgresql1.alwaysdata.com:5432/cestpasfaux_agency";
+    protected String url = "jdbc:postgresql://postgresql1.alwaysdata.com:5432/cestpasfaux_annuaire";
 
-    protected String user = "";
+    protected String user = "cestpasfaux";
 
     protected String passwd;
 

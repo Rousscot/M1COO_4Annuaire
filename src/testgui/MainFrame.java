@@ -16,7 +16,7 @@ import javax.swing.*;
  * @author ferlicot & rousseau
  */
 public class MainFrame extends JFrame{
-
+/*
     JPanel mainJPanel= new JPanel();
 
     JPanel annuaire = new JPanel();
@@ -54,5 +54,5 @@ public class MainFrame extends JFrame{
     public static void main(String[] args){
         new MainFrame().setVisible(true);
     }
-
+*/
 }

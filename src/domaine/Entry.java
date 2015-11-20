@@ -48,6 +48,11 @@ public class Entry {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Entry{id=" + this.id +", lastName='" + this.lastName + ", firstName='" + this.firstName + ", numbers=" + this.numbers + '}';
+    }
+
     // GETTERS SETTERS
 
     public Long getId() {

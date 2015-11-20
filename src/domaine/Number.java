@@ -15,6 +15,12 @@ public class Number {
 
     protected Entry entry;
 
+    //TODO Maybe too many constructors ?
+
+    public Number(String code, String value) {
+        this(Long.valueOf(0), code, value, null);
+    }
+
     public Number(String code, String value, Entry entry) {
         this(Long.valueOf(0), code, value,entry);
     }
@@ -24,6 +30,11 @@ public class Number {
         this.code = code;
         this.value = value;
         this.entry = entry;
+    }
+
+    @Override
+    public String toString() {
+        return "Number{id=" + this.id + ", code='" + this.code + ", value='" + this.value + ", entry=" + this.entry + '}';
     }
 
     public Long getId() {
