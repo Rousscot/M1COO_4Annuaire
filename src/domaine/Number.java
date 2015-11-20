@@ -6,6 +6,7 @@ package domaine;
  * This class represents a number of an entry.
  */
 public class Number {
+    protected int id_number;
     protected String code;
     protected String value;
 

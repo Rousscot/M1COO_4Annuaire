@@ -6,6 +6,7 @@ package domaine;
  * This class represents an entry of a directory.
  */
 public class Entry {
+    protected int id_entry;
     protected String last_name;
     protected String first_name;
 
