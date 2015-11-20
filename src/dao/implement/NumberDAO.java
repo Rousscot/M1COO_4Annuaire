@@ -5,6 +5,7 @@ import dao.exception.delete.NumberDeleteException;
 import dao.exception.find.NumberNotFoundException;
 import dao.exception.insert.NumberInsertCustomerException;
 import dao.exception.update.NumberUpdateFailedException;
+import domaine.Number;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,8 +55,7 @@ public class NumberDAO extends DAO<Number> {
     @Override
     public Number update(Number number) throws NumberUpdateFailedException {
         String request = "UPDATE Number SET code = '" + number.getCode() + "'," +
-                " value = '" + number.getValue() + "'"
-                " WHERE cust_id = " + number.getId();
+                " value = '" + number.getValue() + "' WHERE cust_id = " + number.getId();
         try {
             this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(request);
             number = this.find(number.getId());
