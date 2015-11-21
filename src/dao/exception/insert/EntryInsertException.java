@@ -18,7 +18,7 @@ public class EntryInsertException extends DAOCannotInsertException {
     /**
      * I am the constructor of the exception.
      *
-     * @param entry the entry the DAO tried to insert into the database.
+     * @param entry the entry the DAO tried to insert into the database.
      */
     public EntryInsertException(Entry entry) {
         this.entry = entry;
