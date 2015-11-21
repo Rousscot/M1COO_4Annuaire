@@ -1,5 +1,7 @@
 package domaine;
 
+import dao.exception.insert.NumberInsertException;
+import dao.implement.NumberDAO;
 import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.NumberNotFoundException;
 
@@ -53,6 +55,11 @@ public class Entry {
         return "Entry{id=" + this.id +", lastName='" + this.lastName + ", firstName='" + this.firstName + ", numbers=" + this.numbers + '}';
     }
 
+    public Entry createNumber(String code, String value) throws NumberInsertException, DuplicateNumberException {
+        this.addNumber((new NumberDAO()).create(new Number(code, value)));
+        return this;
+    }
+
     // GETTERS SETTERS
 
     public Long getId() {
@@ -86,4 +93,5 @@ public class Entry {
     public Set<Number> getNumbers() {
         return numbers;
     }
+
 }
