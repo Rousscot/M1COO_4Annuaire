@@ -9,22 +9,38 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rousseau & ferlicot on 20/11/15.
+ * I am an Entry of the Annuaire.
  *
- * This class represents an entry of a directory.
+ * @author Cyril Ferlicot and Aurelien Rousseau
  */
 public class Entry {
 
+    //ATTRIBUTES
+
+    /**
+     * Id inside the database.
+     */
     protected Long id;
 
+    /**
+     * Last name of the contact.
+     */
     protected String lastName;
 
+    /**
+     * First name of the contact.
+     */
     protected String firstName;
 
+    /**
+     * Numbers of the contact.
+     */
     protected Set<Number> numbers;
 
+    //CONSTRUCTORS
+
     public Entry(String lastName, String firstName) {
-        this(Long.valueOf(0), lastName, firstName);
+        this(0L, lastName, firstName);
     }
 
     public Entry(Long id, String lastName, String firstName) {
@@ -34,33 +50,7 @@ public class Entry {
         this.numbers = new HashSet();
     }
 
-    public Entry addNumber(Number number) throws DuplicateNumberException {
-        if(this.numbers.contains(number)){
-            throw new DuplicateNumberException(number);
-        }
-        this.numbers.add(number);
-        return this;
-    }
-
-    public Entry deleteNumber(Number number) throws NumberNotFoundException {
-        if(this.numbers.contains(number)){
-            throw new NumberNotFoundException(number);
-        }
-        this.numbers.remove(number);
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "Entry{id=" + this.id +", lastName='" + this.lastName + ", firstName='" + this.firstName + ", numbers=" + this.numbers + '}';
-    }
-
-    public Entry createNumber(String code, String value) throws NumberInsertException, DuplicateNumberException {
-        this.addNumber((new NumberDAO()).create(new Number(code, value)));
-        return this;
-    }
-
-    // GETTERS SETTERS
+    // GETTERS SETTERS AND COMMON METHODS
 
     public Long getId() {
         return id;
@@ -94,4 +84,75 @@ public class Entry {
         return numbers;
     }
 
+    @Override
+    public String toString() {
+        return "Entry{id=" + this.id +", lastName='" + this.lastName + ", firstName='" + this.firstName + ", numbers=" + this.numbers + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Entry)) return false;
+
+        Entry entry = (Entry) o;
+
+        if (!this.lastName.equals(entry.lastName)) return false;
+        if (!this.firstName.equals(entry.firstName)) return false;
+        return this.numbers.equals(entry.numbers);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.lastName.hashCode();
+        result = 31 * result + this.firstName.hashCode();
+        result = 31 * result + this.numbers.hashCode();
+        return result;
+    }
+
+    // Actions
+
+    /**
+     * I am a method that udd a Number to my list of numbers.
+     *
+     * @param number The number I need to add.
+     * @return Myself to allow cascade if needed.
+     * @throws DuplicateNumberException In case I already have this number.
+     */
+    public Entry addNumber(Number number) throws DuplicateNumberException {
+        if(this.numbers.contains(number)){
+            throw new DuplicateNumberException(number);
+        }
+        this.numbers.add(number);
+        return this;
+    }
+
+    /**
+     * I am a method that delete a number of my numbers.
+     *
+     * @param number the number I need to delete.
+     * @return myself to allow cascade if needed.
+     * @throws NumberNotFoundException If the number is not in the numbers.
+     */
+    public Entry deleteNumber(Number number) throws NumberNotFoundException {
+        if(this.numbers.contains(number)){
+            throw new NumberNotFoundException(number);
+        }
+        this.numbers.remove(number);
+        return this;
+    }
+
+    /**
+     * I am a method that create a new number and add it to my numbers.
+     *
+     * @param code the code of the number.
+     * @param value the value on the number.
+     * @return myself to allow cascade if needed.
+     * @throws NumberInsertException raised if there is a problem with the insertion of the number in the database.
+     * @throws DuplicateNumberException raised if the number already exist.
+     */
+    public Entry createNumber(String code, String value) throws NumberInsertException, DuplicateNumberException {
+        this.addNumber((new NumberDAO()).create(new Number(code, value)));
+        return this;
+    }
 }

@@ -96,18 +96,16 @@ public class Number {
 
         Number number = (Number) o;
 
-        if (id != null ? !id.equals(number.id) : number.id != null) return false;
-        if (!code.equals(number.code)) return false;
-        if (!value.equals(number.value)) return false;
-        return !(entry != null ? !entry.equals(number.entry) : number.entry != null);
+        if (!this.code.equals(number.code)) return false;
+        if (!this.value.equals(number.value)) return false;
+        return !(this.entry != null ? !this.entry.equals(number.entry) : number.entry != null);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + (entry != null ? entry.hashCode() : 0);
+        int result = this.code.hashCode();
+        result = 31 * result + this.value.hashCode();
+        result = 31 * result + (this.entry != null ? this.entry.hashCode() : 0);
         return result;
     }
 }

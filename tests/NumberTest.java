@@ -1,9 +1,8 @@
 import domaine.Number;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static junit.framework.TestCase.assertEquals;
 
 public class NumberTest {
 
@@ -21,7 +20,11 @@ public class NumberTest {
 
     @Test
     public void testEquals(){
-        assertEquals(numberTest, new Number("Test", "01.23.45.67"));
+        Number numberTest2 = new Number("Test", "01.23.45.67");
+        Assert.assertEquals("The Numbers are not equals ?", numberTest, numberTest2);
+        int oneCode = numberTest.hashCode();
+        Assert.assertEquals("Hash code not equal ?", oneCode, numberTest2.hashCode());
+        Assert.assertEquals("Hash code changed ?", oneCode, numberTest.hashCode());
     }
 
 }
