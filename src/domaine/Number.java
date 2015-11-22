@@ -96,7 +96,10 @@ public class Number {
 
         Number number = (Number) o;
 
-        return (this.id.equals(number.id) && this.code.equals(number.code) &&this.value.equals(number.value) && this.entry.equals(number.entry));
+        if (id != null ? !id.equals(number.id) : number.id != null) return false;
+        if (!code.equals(number.code)) return false;
+        if (!value.equals(number.value)) return false;
+        return !(entry != null ? !entry.equals(number.entry) : number.entry != null);
     }
 
     @Override
