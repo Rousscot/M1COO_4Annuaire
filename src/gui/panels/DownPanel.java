@@ -1,16 +1,16 @@
-package gui.entrees;
+package gui.panels;
 
 import javax.swing.*;
 
 /**
- * Created by aurelien on 21/11/2015.
+ * Created by ferlicot & rousseau at Ponyland
  */
-public class EntreesDownJPanel extends JPanel {
+public class DownPanel extends JPanel {
     protected JButton ajouter = new JButton("Ajouter");
     protected JButton supprimer = new JButton("Supprimer");
     protected JButton nettoyer = new JButton("Nettoyer");
 
-    public EntreesDownJPanel() {
+    public DownPanel() {
         this.add(ajouter);
         this.add(supprimer);
         this.add(nettoyer);
@@ -27,5 +27,4 @@ public class EntreesDownJPanel extends JPanel {
     public JButton getNettoyer() {
         return nettoyer;
     }
-
 }

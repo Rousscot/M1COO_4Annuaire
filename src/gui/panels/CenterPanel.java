@@ -1,36 +1,38 @@
-package gui.entrees;
+package gui.panels;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by aurelien on 21/11/2015.
+ * Created by ferlicot & rousseau at Hyrule
  */
-public class EntreesCenterJPanel extends JPanel {
+public class CenterPanel extends JPanel {
     JTextField first_name = new JTextField();
     JTextField last_name = new JTextField();
-    JLabel prenom = new JLabel("Code");
-    JLabel nom = new JLabel("Valeur");
+    JLabel firstLabel;
+    JLabel secondLabel;
 
-    public EntreesCenterJPanel() {
+    public CenterPanel(String firstLabel, String secondLabel) {
         // 2 lines, 2 columns, 5px of vertically separation
         this.setLayout(new GridLayout(2, 2, 0, 5));
-
         // input size
         first_name.setColumns(10);
         last_name.setColumns(10);
 
-        this.add(prenom);
+        this.firstLabel = new JLabel(firstLabel);
+        this.secondLabel = new JLabel(secondLabel);
+
+        this.add(this.secondLabel);
         this.add(first_name);
-        this.add(nom);
+        this.add(this.firstLabel);
         this.add(last_name);
     }
 
-    public String getFirstNameToString() {
+    public String getFirstLabelToString() {
         return first_name.getText();
     }
 
-    public String getLastNameToString() {
+    public String getSecondLabelToString() {
         return last_name.getText();
     }
 }
