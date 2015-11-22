@@ -1,25 +1,25 @@
 package domaine.exceptions;
 
-import domaine.Number;
+import domaine.Entry;
 
 /**
- * I am an exception raised when a Number is not found.
+ * I am an exception raised when an Entry is not found.
  *
  * @author Cyril Ferlicot and Aurelien Rousseau
  */
-public class NumberNotFoundException extends Exception {
+public class EntryNotFoundException extends Exception {
     /**
      * The entry not found.
      */
-    protected final Number number;
+    protected final Entry entry;
 
     /**
      * I am the constructor of the exception.
      *
-     * @param number the entry needed to find.
+     * @param entry the entry needed to find.
      */
-    public NumberNotFoundException(Number number) {
-        this.number = number;
+    public EntryNotFoundException(Entry entry) {
+        this.entry = entry;
     }
 
     /**
@@ -27,8 +27,8 @@ public class NumberNotFoundException extends Exception {
      *
      * @return the entry of the object that the DAO wanted to find.
      */
-    public Number number() {
-        return number;
+    public Entry entry() {
+        return entry;
     }
 
 }

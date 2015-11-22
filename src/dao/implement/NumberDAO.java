@@ -23,9 +23,9 @@ public class NumberDAO extends DAO<Number> {
     /**
      * I am a method that add a Number to the database.
      *
-     * @param number the number I need to add.
-     * @return the number with the id updated.
-     * @throws NumberInsertException if I cannot insert the number or if the Number is already in the table.
+     * @param number the entry I need to add.
+     * @return the entry with the id updated.
+     * @throws NumberInsertException if I cannot insert the entry or if the Number is already in the table.
      */
     @Override
     public Number create(Number number) throws NumberInsertException {
@@ -64,7 +64,7 @@ public class NumberDAO extends DAO<Number> {
     /**
      * I am a method that delete a Number of the database.
      *
-     * @param number the number I need to delete.
+     * @param number the entry I need to delete.
      * @throws NumberDeleteException raised if I cannot delete the Number from the database.
      */
     @Override
@@ -80,8 +80,8 @@ public class NumberDAO extends DAO<Number> {
     /**
      * I am a method that update a method in a database.
      *
-     * @param number the number I need to update.
-     * @return the number updated (should not change)
+     * @param number the entry I need to update.
+     * @return the entry updated (should not change)
      * @throws NumberUpdateFailedException if I cannot update the Number.
      */
     @Override

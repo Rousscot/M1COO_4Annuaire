@@ -36,7 +36,7 @@ public class EntryDAO extends DAO<Entry> {
      *
      * @param entry is the object I add to the database.
      * @return The object with the id set
-     * @throws EntryInsertException raised if the entry (or one of his number) cannot be added or is already added (id != 0).
+     * @throws EntryInsertException raised if the entry (or one of his entry) cannot be added or is already added (id != 0).
      */
     @Override
     public Entry create(Entry entry) throws EntryInsertException {
@@ -77,7 +77,7 @@ public class EntryDAO extends DAO<Entry> {
      * I am a method that delete an Entry and his numbers from a database.
      *
      * @param entry is the entry I delete.
-     * @throws EntryDeleteException raised if I cannot delete the Entry (or one of his number).
+     * @throws EntryDeleteException raised if I cannot delete the Entry (or one of his entry).
      */
     @Override
     public void delete(Entry entry) throws EntryDeleteException {
@@ -99,7 +99,7 @@ public class EntryDAO extends DAO<Entry> {
      *
      * @param entry the entry I update.
      * @return the entry updated. (should be the same as the parameter)
-     * @throws EntryUpdateFailedException raised if I cannot update the entry (or one of his number).
+     * @throws EntryUpdateFailedException raised if I cannot update the entry (or one of his entry).
      */
     @Override
     public Entry update(Entry entry) throws EntryUpdateFailedException {

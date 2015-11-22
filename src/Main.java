@@ -1,11 +1,10 @@
 import dao.DAO;
 import dao.implement.NumberDAO;
 import domaine.Entry;
+import domaine.Number;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
-import domaine.Number;
 
 /**
  * TODO
