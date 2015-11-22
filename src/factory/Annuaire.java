@@ -8,6 +8,7 @@ import domaine.Number;
 import domaine.exceptions.DuplicateEntryException;
 import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.EntryNotFoundException;
+import domaine.exceptions.NumberNotFoundException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class Annuaire {
     }
 
     public Annuaire addEntry(Entry entry) throws DuplicateEntryException {
-        if(this.entries.contains(entry)){
+        if (this.entries.contains(entry)) {
             throw new DuplicateEntryException(entry);
         }
         this.entries.add(entry);
@@ -42,16 +43,27 @@ public class Annuaire {
     }
 
     public Annuaire createNumberFor(Entry entry, String code, String value) throws NumberInsertException, DuplicateNumberException, EntryNotFoundException {
-        if(this.entries.contains(entry)){
+        if (this.entries.contains(entry)) {
             entry.createNumber(code, value);
             return this;
         }
         throw new EntryNotFoundException(entry);
     }
 
-    public Annuaire deleteNumberOf(Entry entry, Number number){
-        //TODO
-        return this;
+    public Annuaire deleteNumberOf(Entry entry, Number number) throws EntryNotFoundException, NumberNotFoundException {
+        if (this.entries.contains(entry)) {
+            entry.deleteNumber(number);
+            return this;
+        }
+        throw new EntryNotFoundException(entry);
+    }
+
+    public Annuaire deleteEntry(Entry entry) throws EntryNotFoundException {
+        if (this.entries.contains(entry)) {
+            this.entries.remove(entry);
+            return this;
+        }
+        throw new EntryNotFoundException(entry);
     }
 
     // GETTER SETTER
