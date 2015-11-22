@@ -15,11 +15,6 @@ import java.util.List;
 
 /**
  * TODO
- * <p>
- * Donc les choses à faire si j'ai bien compris:
- * - Supprimer un contact
- * - Updater un contact (optionnel apparemment)
- * - Supprimer un numero à un contact
  */
 public class Annuaire {
 
