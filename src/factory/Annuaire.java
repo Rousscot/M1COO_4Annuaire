@@ -7,6 +7,7 @@ import domaine.Entry;
 import domaine.Number;
 import domaine.exceptions.DuplicateEntryException;
 import domaine.exceptions.DuplicateNumberException;
+import domaine.exceptions.EntryNotFoundException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,10 +41,12 @@ public class Annuaire {
         return this;
     }
 
-    public Annuaire createNumberFor(Entry entry, String code, String value) throws NumberInsertException, DuplicateNumberException {
-        //TODO check that the entry is in the Annuaire.
-        entry.createNumber(code, value);
-        return this;
+    public Annuaire createNumberFor(Entry entry, String code, String value) throws NumberInsertException, DuplicateNumberException, EntryNotFoundException {
+        if(this.entries.contains(entry)){
+            entry.createNumber(code, value);
+            return this;
+        }
+        throw new EntryNotFoundException(entry);
     }
 
     public Annuaire deleteNumberOf(Entry entry, Number number){
