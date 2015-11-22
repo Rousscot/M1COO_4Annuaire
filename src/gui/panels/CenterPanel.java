@@ -7,10 +7,10 @@ import java.awt.*;
  * Created by ferlicot & rousseau at Hyrule
  */
 public class CenterPanel extends JPanel {
-    JTextField first_name = new JTextField();
-    JTextField last_name = new JTextField();
-    JLabel firstLabel;
-    JLabel secondLabel;
+    protected JTextField first_name = new JTextField();
+    protected JTextField last_name = new JTextField();
+    protected JLabel firstLabel;
+    protected JLabel secondLabel;
 
     public CenterPanel(String firstLabel, String secondLabel) {
         // 2 lines, 2 columns, 5px of vertically separation
@@ -29,10 +29,10 @@ public class CenterPanel extends JPanel {
     }
 
     public String getFirstLabelToString() {
-        return first_name.getText();
+        return first_name.getText().trim();
     }
 
     public String getSecondLabelToString() {
-        return last_name.getText();
+        return last_name.getText().trim();
     }
 }

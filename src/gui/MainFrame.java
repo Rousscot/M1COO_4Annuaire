@@ -1,7 +1,7 @@
 package gui;
 
-import gui.annuaire.AnnuaireCustomJPanel;
-import gui.entrees.EntreesCustomJPanel;
+import gui.customPanels.AnnuairePanel;
+import gui.customPanels.EntreesPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +14,8 @@ public class MainFrame extends JFrame{
 
     JPanel mainJPanel= new JPanel();
 
-    JPanel annuaire = new AnnuaireCustomJPanel();
-    JPanel entrees = new EntreesCustomJPanel();
+    AnnuairePanel annuaire = new AnnuairePanel("Annuaire", "Nom", "Prénom");
+    EntreesPanel entrees = new EntreesPanel("Entrées", "Code", "Valeur");
 
     public MainFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
