@@ -5,6 +5,9 @@ import gui.customPanels.EntreesPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  *
@@ -23,13 +26,28 @@ public class MainFrame extends JFrame{
         this.setLocation(200, 200);
         this.setSize(500, 500);
         Dimension dimension = new Dimension(700,500);
-
         this.setMinimumSize(dimension);
+
+        // Behaviour of the Jlists
+        annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
 
         mainJPanel.add(annuaire);
         mainJPanel.add(entrees);
 
         this.add(mainJPanel);
+    }
+
+    public MouseListener entreesMouseListener(){
+        MouseListener mouseListener = new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                String selected = annuaire.getUpPanel().getjList().getSelectedValue();
+                DefaultListModel<String> stringDefaultListModel = new DefaultListModel<>();
+                stringDefaultListModel.add(0, selected);
+                entrees.getUpPanel().getjList().setModel(stringDefaultListModel);
+            }
+        };
+        return mouseListener;
     }
 
      public static void main(String[] args){

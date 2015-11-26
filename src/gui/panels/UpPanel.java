@@ -19,4 +19,8 @@ public class UpPanel extends JPanel {
         jScrollPane.setPreferredSize(new Dimension(250,250));
         this.add(jScrollPane);
     }
+
+    public JList<String> getjList() {
+        return jList;
+    }
 }
