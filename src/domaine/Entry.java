@@ -106,7 +106,6 @@ public class Entry {
     public int hashCode() {
         int result = this.lastName.hashCode();
         result = 31 * result + this.firstName.hashCode();
-        result = 31 * result + this.numbers.hashCode();
         return result;
     }
 

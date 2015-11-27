@@ -135,11 +135,13 @@ public class EntryDAO extends DAO<Entry> {
             if (result.first()) {
                 Entry entry = new Entry(id, result.getString("first_name"), result.getString("last_name"));
 
-                String requestNumber = "SELECT * FROM NUMBER WHERE id_entry = " + id;
+                String requestNumber = "SELECT * FROM NUMBER WHERE id_entry = " + id;
                 ResultSet resultNumbers = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(requestNumber);
                 while (resultNumbers.next()) {
                     try {
-                        entry.addNumber(this.numberDAO.find(resultNumbers.getLong("id_number")));
+                        Number number = (this.numberDAO.findWithoutEntry(resultNumbers.getLong("id_number")));
+                        number.setEntry(entry);
+                        entry.addNumber(number);
                     } catch (DuplicateNumberException e) {
                         //Should not happen
                     }

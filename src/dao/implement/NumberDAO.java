@@ -2,6 +2,7 @@ package dao.implement;
 
 import dao.DAO;
 import dao.exception.delete.NumberDeleteException;
+import dao.exception.find.EntryNotFoundInDBException;
 import dao.exception.find.NumberNotFoundInDBException;
 import dao.exception.insert.NumberInsertException;
 import dao.exception.update.NumberUpdateFailedException;
@@ -11,6 +12,7 @@ import domaine.Number;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -105,12 +107,35 @@ public class NumberDAO extends DAO<Number> {
      */
     @Override
     public Number find(Long id) throws NumberNotFoundInDBException {
+        try {
+            Number number = this.findWithoutEntry(id);
+            String request = "SELECT id_entry FROM NUMBER WHERE id_number = " + id;
+            Statement statement = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet result = statement.executeQuery(request);
+            if(result.first()) {
+                Long id_entry = result.getLong("id_entry");
+                number.setEntry((new EntryDAO()).find(id_entry));
+            }
+                return number;
+            } catch ( SQLException e) {
+            e.printStackTrace();
+        }
+        throw new NumberNotFoundInDBException(id);
+    }
+
+    /**
+     * I am a method that visit the database and return a Number from an id without the entry set. This avoid an infinite loop when we try to find an entry.
+     *
+     * @param id the id of the Number.
+     * @return the Number matching the id.
+     * @throws NumberNotFoundInDBException raised if the Number is not found.
+     */
+    public Number findWithoutEntry(Long id) throws NumberNotFoundInDBException {
         String request = "SELECT * FROM NUMBER WHERE id_number = " + id;
         try {
             ResultSet result = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(request);
             if (result.first()) {
-                Entry entry = (new EntryDAO()).find(result.getLong("id_entry"));
-                return new Number(id, result.getString("code"), result.getString("value"), entry);
+                return new Number(id, result.getString("code"), result.getString("value"), null);
             }
         } catch (SQLException e) {
             e.printStackTrace();

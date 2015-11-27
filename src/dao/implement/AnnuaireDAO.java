@@ -66,11 +66,11 @@ public class AnnuaireDAO extends DAO<Annuaire> {
     public Annuaire find(Long id) throws AnnuaireNotFoundInDBException {
         try {
             Annuaire annuaire = new Annuaire();
-            String request = "SELECT * FROM ENTRY";
+            String request = "SELECT * FROM entry";
             ResultSet result = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(request);
             List<Entry> entries = new LinkedList<>();
             while (result.next()) {
-                entries.add(this.entryDAO.find(result.getLong("id_number")));
+                entries.add(this.entryDAO.find(result.getLong("id_entry")));
             }
             annuaire.entries(entries);
             return annuaire;

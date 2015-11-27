@@ -38,7 +38,8 @@ public class ConnectionBdd {
             Class.forName("org.postgresql.Driver");
             System.out.println("Driver O.K.");
             System.out.println("Password");
-            this.passwd = (new BufferedReader(new InputStreamReader(System.in))).readLine();
+            //this.passwd = (new BufferedReader(new InputStreamReader(System.in))).readLine();
+            this.passwd = "genji1&2";
             connection = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connection O.K.");
         } catch (ClassNotFoundException e) {
@@ -47,8 +48,6 @@ public class ConnectionBdd {
         } catch (SQLException e) {
             System.out.println("There is a problem with the url/login/password of the database :(");
             System.exit(15);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
