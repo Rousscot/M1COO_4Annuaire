@@ -14,13 +14,17 @@ import java.awt.event.*;
  */
 public class MainFrame extends JFrame{
 
-    JPanel mainJPanel= new JPanel();
-    Annuaire annuaireController;
+    protected JPanel mainJPanel;
+    protected AnnuairePanel annuaire;
+    protected EntreesPanel entrees;
 
-    AnnuairePanel annuaire = new AnnuairePanel("Annuaire", "Nom", "Prénom");
-    EntreesPanel entrees = new EntreesPanel("Entrées", "Code", "Valeur");
+    public MainFrame(Annuaire annuaireController) {
+        // Init
+        mainJPanel = new JPanel();
+        annuaire = new AnnuairePanel(annuaireController);
+        entrees = new EntreesPanel(annuaireController);
 
-    public MainFrame() {
+        // Window parameters
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Annuaire");
         this.setLocation(200, 200);
@@ -28,16 +32,13 @@ public class MainFrame extends JFrame{
         Dimension dimension = new Dimension(700,500);
         this.setMinimumSize(dimension);
 
-        // Init
-        //initUpPanel();
-
         // Behaviours
         annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
         annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
 
+        // Add Components
         mainJPanel.add(annuaire);
         mainJPanel.add(entrees);
-
         this.add(mainJPanel);
     }
 
@@ -69,10 +70,12 @@ public class MainFrame extends JFrame{
         };
         return actionListener;
     }
+/*
+    public void refresh(){
+        annuaire.refresh();
+        entrees.refresh();
+    }*/
 
 
-     public static void main(String[] args){
-        new MainFrame().setVisible(true);
-    }
 
 }

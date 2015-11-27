@@ -1,6 +1,7 @@
 package gui.customPanels;
 
 import domaine.Entry;
+import factory.Annuaire;
 import gui.panels.CenterPanel;
 import gui.panels.FullCustomPanel;
 
@@ -13,9 +14,17 @@ import java.util.List;
  * Created by aurelien on 22/11/2015.
  */
 public class AnnuairePanel extends FullCustomPanel {
-    public AnnuairePanel(String borderName, String firstLabel, String secondLabel) {
-        super(borderName, firstLabel, secondLabel);
+
+    protected Annuaire annuaireController;
+
+    public AnnuairePanel( String firstLabel, String secondLabel) {
+        super(firstLabel, secondLabel);
         this.getUpPanel().setTextFieldValues(testEntries(), ".");
+    }
+
+    public AnnuairePanel(Annuaire annuaireController){
+        super( "Nom", "Prénom");
+        this.annuaireController = annuaireController;
     }
 
     public List<Entry> testEntries(){
@@ -36,6 +45,11 @@ public class AnnuairePanel extends FullCustomPanel {
             }
         };
         return actionListener;
+    }
+
+    @Override
+    public String borderName(){
+        return "Annuaire";
     }
 
 }
