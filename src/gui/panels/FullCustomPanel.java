@@ -30,6 +30,10 @@ public abstract class FullCustomPanel extends JPanel{
         this.add("South", downPanel);
     }
 
+    public UpPanel getUpPanel() {
+        return upPanel;
+    }
+
     public abstract ActionListener ajouterActionListener(CenterPanel centerPanel);
     public abstract ActionListener supprimerActionListener(CenterPanel centerPanel);
     public abstract ActionListener nettoyerActionListener(CenterPanel centerPanel);
