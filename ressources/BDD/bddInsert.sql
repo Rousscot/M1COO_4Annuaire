@@ -1,1 +1,1 @@
--- TODO :)
+INSERT INTO entry VALUES (4, 'Foo', 'Bar');
