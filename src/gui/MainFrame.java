@@ -1,13 +1,12 @@
 package gui;
 
+import factory.Annuaire;
 import gui.customPanels.AnnuairePanel;
 import gui.customPanels.EntreesPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  *
@@ -16,6 +15,7 @@ import java.awt.event.MouseListener;
 public class MainFrame extends JFrame{
 
     JPanel mainJPanel= new JPanel();
+    Annuaire annuaireController;
 
     AnnuairePanel annuaire = new AnnuairePanel("Annuaire", "Nom", "Prénom");
     EntreesPanel entrees = new EntreesPanel("Entrées", "Code", "Valeur");
@@ -28,8 +28,12 @@ public class MainFrame extends JFrame{
         Dimension dimension = new Dimension(700,500);
         this.setMinimumSize(dimension);
 
-        // Behaviour of the Jlists
+        // Init
+        //initUpPanel();
+
+        // Behaviours
         annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
+        annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
 
         mainJPanel.add(annuaire);
         mainJPanel.add(entrees);
@@ -49,6 +53,23 @@ public class MainFrame extends JFrame{
         };
         return mouseListener;
     }
+
+    public ActionListener annuaireSupprimerActionListener(){
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = annuaire.getUpPanel().getjList().getSelectedIndex();
+                annuaire.getUpPanel().getjList().remove(index);
+
+                DefaultListModel<String> stringDefaultListModel = (DefaultListModel)annuaire.getUpPanel().getjList().getModel();
+                stringDefaultListModel.remove(index);
+                annuaire.getUpPanel().getjList().setModel(stringDefaultListModel);
+
+            }
+        };
+        return actionListener;
+    }
+
 
      public static void main(String[] args){
         new MainFrame().setVisible(true);

@@ -25,13 +25,4 @@ public class EntreesPanel extends FullCustomPanel {
         return actionListener;
     }
 
-    @Override
-    public ActionListener supprimerActionListener(CenterPanel centerPanel) {
-        return null;
-    }
-
-    @Override
-    public ActionListener nettoyerActionListener(CenterPanel centerPanel) {
-        return null;
-    }
 }
