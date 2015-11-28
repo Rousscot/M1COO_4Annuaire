@@ -19,27 +19,35 @@ public class MainFrame extends JFrame{
     protected EntreesPanel entrees;
 
     public MainFrame(Annuaire annuaireController) {
-        // Init
-        mainJPanel = new JPanel();
-        annuaire = new AnnuairePanel(annuaireController);
-        entrees = new EntreesPanel(annuaireController);
+        initFrameParameters();
+        initPanels(annuaireController);
+        addBehaviours();
+        addPanelsToFrame();
+    }
 
-        // Window parameters
+    public void addPanelsToFrame() {
+        mainJPanel.add(annuaire);
+        mainJPanel.add(entrees);
+        this.add(mainJPanel);
+    }
+
+    public void addBehaviours(){
+        annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
+        annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
+    }
+
+    public void initFrameParameters(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Annuaire");
         this.setLocation(200, 200);
         this.setSize(500, 500);
-        Dimension dimension = new Dimension(700,500);
-        this.setMinimumSize(dimension);
+        this.setMinimumSize(new Dimension(700,500));
+    }
 
-        // Behaviours
-        annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
-        annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
-
-        // Add Components
-        mainJPanel.add(annuaire);
-        mainJPanel.add(entrees);
-        this.add(mainJPanel);
+    public void initPanels(Annuaire annuaireController){
+        mainJPanel = new JPanel();
+        annuaire = new AnnuairePanel(annuaireController);
+        entrees = new EntreesPanel(annuaireController);
     }
 
     public MouseListener entreesMouseListener(){
@@ -70,12 +78,4 @@ public class MainFrame extends JFrame{
         };
         return actionListener;
     }
-/*
-    public void refresh(){
-        annuaire.refresh();
-        entrees.refresh();
-    }*/
-
-
-
 }

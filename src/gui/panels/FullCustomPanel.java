@@ -14,15 +14,25 @@ public abstract class FullCustomPanel extends JPanel{
 
     public FullCustomPanel(){
         // initialize the panels
-        upPanel = new UpPanel(this.borderName());
-        centerPanel = new CenterPanel(firstLabel(), secondLabel());
-        downPanel = new DownPanel();
+        initPanels();
         // layout
         this.setLayout(new BorderLayout());
         // add behaviour to the buttons
+        addBehaviours();
+        addPanelsToMainPanel();
+    }
+
+    public void addBehaviours(){
         downPanel.getAjouter().addActionListener(ajouterActionListener(centerPanel));
-        // add the panels
-        // add the panels
+    }
+
+    public void initPanels(){
+        upPanel = new UpPanel(this.borderName());
+        centerPanel = new CenterPanel(firstLabel(), secondLabel());
+        downPanel = new DownPanel();
+    }
+
+    public void addPanelsToMainPanel(){
         this.add("North", upPanel);
         this.add("Center",centerPanel);
         this.add("South", downPanel);
