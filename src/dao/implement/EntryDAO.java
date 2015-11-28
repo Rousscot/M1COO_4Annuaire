@@ -133,7 +133,7 @@ public class EntryDAO extends DAO<Entry> {
             ResultSet result = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(request);
 
             if (result.first()) {
-                Entry entry = new Entry(id, result.getString("first_name"), result.getString("last_name"));
+                Entry entry = new Entry(id, result.getString("secondTextField"), result.getString("firstTextField"));
 
                 String requestNumber = "SELECT * FROM NUMBER WHERE id_entry = " + id;
                 ResultSet resultNumbers = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(requestNumber);

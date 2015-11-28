@@ -14,12 +14,12 @@ public class EntreesPanel extends FullCustomPanel {
 
     protected Annuaire annuaireController;
 
-    public EntreesPanel(String firstLabel, String secondLabel) {
-        super(firstLabel, secondLabel);
+    public EntreesPanel() {
+        super();
     }
 
     public EntreesPanel(Annuaire annuaireController){
-        this("Code", "Valeur");
+        this();
         this.annuaireController = annuaireController;
     }
 
@@ -37,6 +37,16 @@ public class EntreesPanel extends FullCustomPanel {
     @Override
     public String borderName(){
         return "Entrees";
+    }
+
+    @Override
+    public String firstLabel() {
+        return "Code";
+    }
+
+    @Override
+    public String secondLabel() {
+        return "Value";
     }
 
 }

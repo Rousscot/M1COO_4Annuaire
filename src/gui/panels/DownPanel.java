@@ -16,6 +16,10 @@ public class DownPanel extends JPanel {
         this.add(nettoyer);
     }
 
+    public void initButtons(String ajouter, String supprimer, String nettoyer){
+
+    }
+
     public JButton getAjouter() {
         return ajouter;
     }

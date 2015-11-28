@@ -12,10 +12,10 @@ public abstract class FullCustomPanel extends JPanel{
     protected CenterPanel centerPanel;
     protected DownPanel downPanel;
 
-    public FullCustomPanel(String firstLabel, String secondLabel){
+    public FullCustomPanel(){
         // initialize the panels
         upPanel = new UpPanel(this.borderName());
-        centerPanel = new CenterPanel(firstLabel, secondLabel);
+        centerPanel = new CenterPanel(firstLabel(), secondLabel());
         downPanel = new DownPanel();
         // layout
         this.setLayout(new BorderLayout());
@@ -29,6 +29,8 @@ public abstract class FullCustomPanel extends JPanel{
     }
 
     public abstract String borderName();
+    public abstract String firstLabel();
+    public abstract String secondLabel();
 
     public UpPanel getUpPanel() {
         return upPanel;

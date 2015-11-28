@@ -17,13 +17,13 @@ public class AnnuairePanel extends FullCustomPanel {
 
     protected Annuaire annuaireController;
 
-    public AnnuairePanel( String firstLabel, String secondLabel) {
-        super(firstLabel, secondLabel);
+    public AnnuairePanel() {
+        super();
         this.getUpPanel().setTextFieldValues(testEntries(), ".");
     }
 
     public AnnuairePanel(Annuaire annuaireController){
-        super( "Nom", "Prénom");
+        super();
         this.annuaireController = annuaireController;
     }
 
@@ -50,6 +50,16 @@ public class AnnuairePanel extends FullCustomPanel {
     @Override
     public String borderName(){
         return "Annuaire";
+    }
+
+    @Override
+    public String firstLabel() {
+        return "Nom";
+    }
+
+    @Override
+    public String secondLabel() {
+        return "Prénom";
     }
 
 }

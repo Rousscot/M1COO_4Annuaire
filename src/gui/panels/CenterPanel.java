@@ -7,8 +7,8 @@ import java.awt.*;
  * Created by ferlicot & rousseau at Hyrule
  */
 public class CenterPanel extends JPanel {
-    protected JTextField first_name = new JTextField();
-    protected JTextField last_name = new JTextField();
+    protected JTextField secondTextField = new JTextField();
+    protected JTextField firstTextField = new JTextField();
     protected JLabel firstLabel;
     protected JLabel secondLabel;
 
@@ -16,23 +16,23 @@ public class CenterPanel extends JPanel {
         // 2 lines, 2 columns, 5px of vertically separation
         this.setLayout(new GridLayout(2, 2, 0, 5));
         // input size
-        first_name.setColumns(10);
-        last_name.setColumns(10);
+        secondTextField.setColumns(10);
+        firstTextField.setColumns(10);
 
         this.firstLabel = new JLabel(firstLabel);
         this.secondLabel = new JLabel(secondLabel);
 
-        this.add(this.secondLabel);
-        this.add(first_name);
         this.add(this.firstLabel);
-        this.add(last_name);
+        this.add(firstTextField);
+        this.add(this.secondLabel);
+        this.add(secondTextField);
     }
 
     public String getFirstLabelToString() {
-        return first_name.getText().trim();
+        return secondTextField.getText().trim();
     }
 
     public String getSecondLabelToString() {
-        return last_name.getText().trim();
+        return firstTextField.getText().trim();
     }
 }
