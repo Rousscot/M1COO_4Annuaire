@@ -1,18 +1,7 @@
-import dao.ConnectionBdd;
-import dao.DAO;
-import dao.exception.DAOCannotInsertException;
-import dao.exception.find.AnnuaireNotFoundInDBException;
-import dao.implement.AnnuaireDAO;
-import dao.implement.NumberDAO;
-import domaine.Entry;
-import domaine.Number;
 import factory.Annuaire;
 import gui.MainFrame;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * TODO
@@ -37,7 +26,7 @@ public class Main {
             System.out.println(numberDAO.find(num.getId()));
 
             // Delete
-            numberDAO.delete(num);*/
+            numberDAO.delete(num);
 
         try {
             Annuaire annuaireController = (new AnnuaireDAO()).find(null);
@@ -46,5 +35,8 @@ public class Main {
             System.out.println("ERROR DURING INITIALIZATION.");
             System.exit(666);
         }
+        */
+        Annuaire annuaireController = new Annuaire();
+        new MainFrame(annuaireController).setVisible(true);
     }
 }
