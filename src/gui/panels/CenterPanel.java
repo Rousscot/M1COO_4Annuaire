@@ -32,6 +32,10 @@ public class CenterPanel extends JPanel {
         this.secondLabel = new JLabel(secondLabel);
     }
 
+    /**
+     * Add the TextFields and Labels to the panel.
+     * Warning: the order of the adding is important because we are in a GridLayout configuration.
+     */
     public void addTextFieldsAndLabels(){
         this.add(this.firstLabel);
         this.add(firstTextField);

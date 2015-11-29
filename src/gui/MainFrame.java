@@ -50,6 +50,7 @@ public class MainFrame extends JFrame{
         entrees = new EntreesPanel(annuaireController);
     }
 
+    // TODO action on Entrees jList when an item on Annuaire jList is clicked
     public MouseListener entreesMouseListener(){
         MouseListener mouseListener = new MouseAdapter() {
             @Override
@@ -63,13 +64,12 @@ public class MainFrame extends JFrame{
         return mouseListener;
     }
 
+    // TODO action on Annuaire jList when an item is clicked
     public ActionListener annuaireSupprimerActionListener(){
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = annuaire.getUpPanel().getjList().getSelectedIndex();
-                annuaire.getUpPanel().getjList().remove(index);
-
                 DefaultListModel<String> stringDefaultListModel = (DefaultListModel)annuaire.getUpPanel().getjList().getModel();
                 stringDefaultListModel.remove(index);
                 annuaire.getUpPanel().getjList().setModel(stringDefaultListModel);

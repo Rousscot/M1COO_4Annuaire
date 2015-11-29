@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 /**
  * Created by aurelien on 22/11/2015.
  */
-public abstract class FullCustomPanel extends JPanel{
+public abstract class FullCustomPanel extends JPanel {
     protected UpPanel upPanel;
     protected CenterPanel centerPanel;
     protected DownPanel downPanel;
 
-    public FullCustomPanel(){
+    public FullCustomPanel() {
         // initialize the panels
         initPanels();
         // layout
@@ -22,25 +22,29 @@ public abstract class FullCustomPanel extends JPanel{
         addPanelsToMainPanel();
     }
 
-    public void addBehaviours(){
-        downPanel.getAjouter().addActionListener(ajouterActionListener(centerPanel));
+    public void addBehaviours() {
+        downPanel.getAjouter().addActionListener(ajouterActionListener());
     }
 
-    public void initPanels(){
+    public void initPanels() {
         upPanel = new UpPanel(this.borderName());
         centerPanel = new CenterPanel(firstLabel(), secondLabel());
         downPanel = new DownPanel();
     }
 
-    public void addPanelsToMainPanel(){
+    public void addPanelsToMainPanel() {
         this.add("North", upPanel);
-        this.add("Center",centerPanel);
+        this.add("Center", centerPanel);
         this.add("South", downPanel);
     }
 
     public abstract String borderName();
+
     public abstract String firstLabel();
+
     public abstract String secondLabel();
+
+    public abstract ActionListener ajouterActionListener();
 
     public UpPanel getUpPanel() {
         return upPanel;
@@ -49,7 +53,5 @@ public abstract class FullCustomPanel extends JPanel{
     public DownPanel getDownPanel() {
         return downPanel;
     }
-
-    public abstract ActionListener ajouterActionListener(CenterPanel centerPanel);
 
 }
