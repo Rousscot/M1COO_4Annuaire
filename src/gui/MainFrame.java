@@ -32,7 +32,7 @@ public class MainFrame extends JFrame{
     }
 
     public void addBehaviours(){
-        annuaire.getUpPanel().getjList().addMouseListener(entreesMouseListener());
+        annuaire.getUpPanel().getJList().addMouseListener(entreesMouseListener());
         annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
     }
 
@@ -55,10 +55,9 @@ public class MainFrame extends JFrame{
         MouseListener mouseListener = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                String selected = annuaire.getUpPanel().getjList().getSelectedValue();
-                DefaultListModel<String> stringDefaultListModel = new DefaultListModel<>();
-                stringDefaultListModel.add(0, selected);
-                entrees.getUpPanel().getjList().setModel(stringDefaultListModel);
+                String selected = annuaire.getUpPanel().getJList().getSelectedValue();
+                entrees.getUpPanel().getDefaultModel().removeAllElements();
+                entrees.getUpPanel().getDefaultModel().addElement(selected);
             }
         };
         return mouseListener;
@@ -69,10 +68,10 @@ public class MainFrame extends JFrame{
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = annuaire.getUpPanel().getjList().getSelectedIndex();
-                DefaultListModel<String> stringDefaultListModel = (DefaultListModel)annuaire.getUpPanel().getjList().getModel();
+                int index = annuaire.getUpPanel().getJList().getSelectedIndex();
+                DefaultListModel<String> stringDefaultListModel = (DefaultListModel)annuaire.getUpPanel().getJList().getModel();
                 stringDefaultListModel.remove(index);
-                annuaire.getUpPanel().getjList().setModel(stringDefaultListModel);
+                annuaire.getUpPanel().getJList().setModel(stringDefaultListModel);
 
             }
         };

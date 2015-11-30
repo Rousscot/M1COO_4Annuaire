@@ -2,60 +2,51 @@ package gui.customPanels;
 
 import domaine.Entry;
 import factory.Annuaire;
-import gui.panels.FullCustomPanel;
+import gui.panels.*;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * Created by aurelien on 22/11/2015.
  */
-public class AnnuairePanel extends FullCustomPanel {
+public class AnnuairePanel extends JPanel {
 
     protected Annuaire annuaireController;
+    protected JPanel upPanel;
+    protected JPanel centerPanel;
+    protected JPanel downPanel;
 
     public AnnuairePanel(Annuaire annuaireController) {
-        super();
         this.annuaireController = annuaireController;
-        refresh();
+        initPanels();
+        addPanelsToMainPanel();
     }
 
-    // TODO set the values into the jList, modify it with the real values (Database instead of Annuaire)
-    public void refresh() {
-        DefaultListModel<String> model = new DefaultListModel<>();
-        for (Entry entry : annuaireController.entries()) {
-            model.addElement(entry.getFirstName() + " " + entry.getLastName());
-        }
-        this.getUpPanel().getjList().setModel(model);
+    private void addPanelsToMainPanel() {
+        this.add("North", upPanel);
+        this.add("Center", centerPanel);
+        this.add("South", downPanel);
     }
 
-
-    // TODO add the real behaviour -> add an Entry if the first+last name are filled, then refresh the jList
-    @Override
-    public ActionListener ajouterActionListener() {
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("annuaire ajouter");
-            }
-        };
-        return actionListener;
+    private void initPanels() {
+        upPanel = new UpEntryPanel(borderName());
+        centerPanel = new CenterPanel(firstLabel(), secondLabel());
+        downPanel = new DownPanel();
     }
 
-    @Override
     public String borderName() {
         return "Annuaire";
     }
 
-    @Override
     public String firstLabel() {
         return "Nom";
     }
 
-    @Override
     public String secondLabel() {
         return "Prénom";
     }
-
 }

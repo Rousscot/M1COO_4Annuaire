@@ -47,7 +47,7 @@ public class EntreesPanel extends FullCustomPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultListModel<String> model = new DefaultListModel<>();
-                upPanel.getjList().setModel(model);
+                upPanel.getJList().setModel(model);
             }
         };
         return actionListener;

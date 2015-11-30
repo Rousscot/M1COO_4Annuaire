@@ -70,4 +70,12 @@ public class Annuaire {
     public void entries(List<Entry> entries) {
         this.entries = entries;
     }
+
+    public int numberOfEntries() {
+        return entries.size();
+    }
+
+    public Entry getEntryAt(int index) {
+        return entries.get(index);
+    }
 }
