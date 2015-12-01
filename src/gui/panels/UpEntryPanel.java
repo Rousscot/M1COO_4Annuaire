@@ -1,5 +1,6 @@
 package gui.panels;
 
+import domaine.Entry;
 import factory.Annuaire;
 import gui.model.EntryListDataSource;
 
@@ -12,7 +13,7 @@ import java.awt.*;
  * Created by ferlicot & rousseau at Las Vegas
  */
 public class UpEntryPanel extends JPanel {
-    protected JList<String> jList;
+    protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
     protected Border border;
 
@@ -34,11 +35,4 @@ public class UpEntryPanel extends JPanel {
         jScrollPane.setPreferredSize(new Dimension(250, 250));
     }
 
-    public JList<String> getJList() {
-        return jList;
-    }
-
-    public DefaultListModel<String> getDefaultModel() {
-        return defaultModel;
-    }
 }

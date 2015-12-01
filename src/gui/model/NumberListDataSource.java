@@ -9,7 +9,7 @@ import javax.swing.event.ListDataListener;
 /**
  * Created by rousseaua on 30/11/15.
  */
-public class NumberListDataSource implements ListModel<Number> {
+public class NumberListDataSource extends DefaultListModel<Number> {
     protected Entry entry;
 
     public NumberListDataSource(Entry entry) {
@@ -24,15 +24,5 @@ public class NumberListDataSource implements ListModel<Number> {
     @Override
     public Number getElementAt(int index) {
         return entry.getNumberAt(index);
-    }
-
-    @Override
-    public void addListDataListener(ListDataListener l) {
-
-    }
-
-    @Override
-    public void removeListDataListener(ListDataListener l) {
-
     }
 }
