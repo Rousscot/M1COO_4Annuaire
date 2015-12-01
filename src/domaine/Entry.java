@@ -5,8 +5,8 @@ import dao.implement.NumberDAO;
 import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.NumberNotFoundException;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * I am an Entry of the Annuaire.
@@ -35,7 +35,7 @@ public class Entry {
     /**
      * Numbers of the contact.
      */
-    protected Set<Number> numbers;
+    protected List<Number> numbers;
 
     //CONSTRUCTORS
 
@@ -47,7 +47,7 @@ public class Entry {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.numbers = new HashSet();
+        this.numbers = new ArrayList<>();
     }
 
     // GETTERS SETTERS AND COMMON METHODS
@@ -76,11 +76,11 @@ public class Entry {
         this.firstName = firstName;
     }
 
-    public void setNumbers(Set<Number> numbers) {
+    public void setNumbers(List<Number> numbers) {
         this.numbers = numbers;
     }
 
-    public Set<Number> getNumbers() {
+    public List<Number> getNumbers() {
         return numbers;
     }
 
@@ -96,9 +96,7 @@ public class Entry {
 
         Entry entry = (Entry) o;
 
-        if (!this.lastName.equals(entry.lastName)) return false;
-        if (!this.firstName.equals(entry.firstName)) return false;
-        return this.numbers.equals(entry.numbers);
+        return this.lastName.equals(entry.lastName) && this.firstName.equals(entry.firstName) && this.numbers.equals(entry.numbers);
 
     }
 
@@ -153,5 +151,13 @@ public class Entry {
     public Entry createNumber(String code, String value) throws NumberInsertException, DuplicateNumberException {
         this.addNumber((new NumberDAO()).create(new Number(code, value)));
         return this;
+    }
+
+    public int numberOfNumbers() {
+        return numbers.size();
+    }
+
+    public Number getNumberAt(int index) {
+        return numbers.get(index);
     }
 }

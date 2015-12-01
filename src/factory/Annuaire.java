@@ -10,6 +10,7 @@ import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.EntryNotFoundException;
 import domaine.exceptions.NumberNotFoundException;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Annuaire {
     protected List<Entry> entries;
 
     public Annuaire() {
-        this.entries = new LinkedList();
+        this.entries = new ArrayList<>();
     }
 
     public Annuaire createEntry(String firstName, String lastName) throws EntryInsertException, DuplicateEntryException {
