@@ -2,14 +2,13 @@ package gui;
 
 import domaine.NullEntry;
 import factory.Annuaire;
-import gui.customPanels.AnnuairePanel;
-import gui.customPanels.EntreesPanel;
+import gui.panels.AnnuairePanel;
+import gui.panels.EntreesPanel;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
 
 /**
  *

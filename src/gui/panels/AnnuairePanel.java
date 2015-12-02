@@ -11,17 +11,24 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
- * Created by ferlicot & rousseau at Las Vegas
+ * Created by aurelien on 22/11/2015.
  */
-public class UpEntryPanel extends JPanel {
+public class AnnuairePanel extends JPanel {
+
+    protected static final String BORDERNAME = "Annuaire";
+    protected static final String FIRSTLABEL = "Nom";
+    protected static final String SECONDLABEL = "Prenom";
+    protected Annuaire annuaireController;
+    protected JPanel centerPanel;
+    protected JPanel downPanel;
     protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
     protected Border border;
 
-    public UpEntryPanel(String borderName, Annuaire annuaire) {
-        initJList(annuaire);
-        initScrollPane(borderName);
-        this.add(jScrollPane);
+    public AnnuairePanel(Annuaire annuaireController) {
+        this.annuaireController = annuaireController;
+        initComponents();
+        addPanelsToMainPanel();
     }
 
     public void initJList(Annuaire annuaire) {
@@ -37,6 +44,20 @@ public class UpEntryPanel extends JPanel {
         jScrollPane.setPreferredSize(new Dimension(250, 250));
     }
 
+    private void addPanelsToMainPanel() {
+        this.setLayout(new BorderLayout());
+        this.add("North", jScrollPane);
+        this.add("Center", centerPanel);
+        this.add("South", downPanel);
+    }
+
+    private void initComponents() {
+        initJList(annuaireController);
+        initScrollPane(AnnuairePanel.BORDERNAME);
+        centerPanel = new CenterPanel(AnnuairePanel.FIRSTLABEL, AnnuairePanel.SECONDLABEL);
+        downPanel = new DownPanel();
+    }
+
     public void addListener(MainFrame frame) {
         jList.addListSelectionListener(frame);
     }
@@ -44,4 +65,5 @@ public class UpEntryPanel extends JPanel {
     public Entry getEntryAt(int index) {
         return jList.getModel().getElementAt(index);
     }
+
 }
