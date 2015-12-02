@@ -9,18 +9,20 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by aurelien on 22/11/2015.
  */
-public class AnnuairePanel extends JPanel {
+public class AnnuairePanel extends ApplicationPanel implements ActionListener {
 
     protected static final String BORDERNAME = "Annuaire";
     protected static final String FIRSTLABEL = "Nom";
     protected static final String SECONDLABEL = "Prenom";
     protected Annuaire annuaireController;
     protected JPanel centerPanel;
-    protected JPanel downPanel;
+    protected AnnuaireButtonsBar buttonsBar;
     protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
     protected Border border;
@@ -48,14 +50,15 @@ public class AnnuairePanel extends JPanel {
         this.setLayout(new BorderLayout());
         this.add("North", jScrollPane);
         this.add("Center", centerPanel);
-        this.add("South", downPanel);
+        this.add("South", buttonsBar);
     }
 
     private void initComponents() {
         initJList(annuaireController);
         initScrollPane(AnnuairePanel.BORDERNAME);
         centerPanel = new CenterPanel(AnnuairePanel.FIRSTLABEL, AnnuairePanel.SECONDLABEL);
-        downPanel = new DownPanel();
+        buttonsBar = new AnnuaireButtonsBar();
+        buttonsBar.addListenerToAllButtons(this);
     }
 
     public void addListener(MainFrame frame) {
@@ -66,4 +69,18 @@ public class AnnuairePanel extends JPanel {
         return jList.getModel().getElementAt(index);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //TODO : This need improvement but I don't have the time now.
+        // This would be so easy if we had method level reflexivity…
+        if(e.getActionCommand().equals("add")){
+
+        } else if (e.getActionCommand().equals("delete")) {
+
+        } else if (e.getActionCommand().equals("clean")) {
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error in the event handling on the buttons.");
+        }
+    }
 }
