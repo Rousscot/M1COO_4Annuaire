@@ -42,4 +42,18 @@ public class CenterPanel extends JPanel {
         this.add(this.secondLabel);
         this.add(secondTextField);
     }
+
+    public void cleanFields() {
+        //TODO
+    }
+
+    public String lastName() {
+        //TODO
+        return null;
+    }
+
+    public String firstName() {
+        //TODO
+        return null;
+    }
 }

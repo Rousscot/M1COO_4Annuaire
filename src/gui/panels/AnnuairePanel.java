@@ -1,6 +1,9 @@
 package gui.panels;
 
+import dao.exception.insert.NumberInsertException;
 import domaine.Entry;
+import domaine.exceptions.DuplicateNumberException;
+import domaine.exceptions.EntryNotFoundException;
 import factory.Annuaire;
 import gui.MainFrame;
 import gui.model.EntryListDataSource;
@@ -21,7 +24,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     protected static final String FIRSTLABEL = "Nom";
     protected static final String SECONDLABEL = "Prenom";
     protected Annuaire annuaireController;
-    protected JPanel centerPanel;
+    protected CenterPanel centerPanel;
     protected AnnuaireButtonsBar buttonsBar;
     protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
@@ -46,14 +49,14 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         jScrollPane.setPreferredSize(new Dimension(250, 250));
     }
 
-    private void addPanelsToMainPanel() {
+    public void addPanelsToMainPanel() {
         this.setLayout(new BorderLayout());
         this.add("North", jScrollPane);
         this.add("Center", centerPanel);
         this.add("South", buttonsBar);
     }
 
-    private void initComponents() {
+    public void initComponents() {
         initJList(annuaireController);
         initScrollPane(AnnuairePanel.BORDERNAME);
         centerPanel = new CenterPanel(AnnuairePanel.FIRSTLABEL, AnnuairePanel.SECONDLABEL);
@@ -73,14 +76,62 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //TODO : This need improvement but I don't have the time now.
         // This would be so easy if we had method level reflexivity…
-        if(e.getActionCommand().equals("add")){
-
+        if (e.getActionCommand().equals("add")) {
+            addNumberToSelectedEntry();
         } else if (e.getActionCommand().equals("delete")) {
-
+            removeSelectedNumber();
         } else if (e.getActionCommand().equals("clean")) {
-
+            cleanFields();
         } else {
-            JOptionPane.showMessageDialog(this, "Error in the event handling on the buttons.");
+            JOptionPane.showMessageDialog(this, "This should not happen! If this happen it's because I am a naughty boy that didn't finished :(");
         }
+    }
+
+    public void cleanFields() {
+        centerPanel.cleanFields();
+    }
+
+    public void removeSelectedNumber() {
+        Entry entry = jList.getSelectedValue();
+        if (entry == null) {
+            JOptionPane.showMessageDialog(this, "Pas de contact selectionné.");
+        } else {
+            try {
+                annuaireController.deleteEntry(entry);
+                refresh();
+            } catch (EntryNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
+            }
+        }
+    }
+
+    public void addNumberToSelectedEntry() {
+        //TODO remove duplication, I miss real lambda :(
+        Entry entry = jList.getSelectedValue();
+        if (entry == null) {
+            JOptionPane.showMessageDialog(this, "Pas de contact selectionné.");
+        } else {
+            try {
+                annuaireController.createNumberFor(entry, firstName(), lastName());
+                refresh();
+            } catch (NumberInsertException | EntryNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
+            } catch (DuplicateNumberException e) {
+                JOptionPane.showMessageDialog(this, "Ce contact poséde déjà ce numéro.");
+            }
+        }
+    }
+
+    public String lastName() {
+        return centerPanel.firstName();
+    }
+
+    public String firstName() {
+        return centerPanel.lastName();
+    }
+
+    public void refresh() {
+        jList.repaint();
+        //TODO refresh the number pane
     }
 }
