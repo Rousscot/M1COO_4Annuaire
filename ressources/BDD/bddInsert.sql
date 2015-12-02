@@ -1,6 +1,21 @@
 DELETE FROM number;
 DELETE FROM entry;
 
+
+INSERT INTO entry VALUES ( 	1, 'Hollande', 'François');
+INSERT INTO entry VALUES ( 	2, 'Presley', 'Elvis');
+INSERT INTO entry VALUES ( 	3, 'Leponge', 'Bob');
+INSERT INTO entry VALUES ( 	4, 'Vador', 'Dark');
+INSERT INTO entry VALUES ( 	5, 'Obama', 'Barack');
+INSERT INTO entry VALUES ( 	6, 'Ibrahimovic', 'Zlatan');
+INSERT INTO entry VALUES ( 	7, 'Gates', 'Bill');
+INSERT INTO entry VALUES ( 	8, 'Depardieu', 'Gérard');
+INSERT INTO entry VALUES ( 	9, 'Wolfgang Amadeus', 'Mozart');
+INSERT INTO entry VALUES ( 	10, 'Laboeuf', 'Shia');
+
+
+
+
 INSERT INTO number VALUES (1, 'Elysée', '03 20 00 00 00', 1);
 INSERT INTO number VALUES (2, 'Parlement', '03 20 11 11 11', 1);
 INSERT INTO number VALUES (3, 'Portable', '03 20 22 22 22', 1);
@@ -28,16 +43,3 @@ INSERT INTO number VALUES (16, 'Portable', '09 00 00 00 00', 9);
 
 INSERT INTO number VALUES (17, 'Maison', '01 23 45 67 89', 10);
 INSERT INTO number VALUES (18, 'Portable', '09 87 65 43 21', 10);
-
-
-
-INSERT INTO entry VALUES ( 	1, 'Hollande', 'François');
-INSERT INTO entry VALUES ( 	2, 'Presley', 'Elvis');
-INSERT INTO entry VALUES ( 	3, 'Leponge', 'Bob');
-INSERT INTO entry VALUES ( 	4, 'Vador', 'Dark');
-INSERT INTO entry VALUES ( 	5, 'Obama', 'Barack');
-INSERT INTO entry VALUES ( 	6, 'Ibrahimovic', 'Zlatan');
-INSERT INTO entry VALUES ( 	7, 'Gates', 'Bill');
-INSERT INTO entry VALUES ( 	8, 'Depardieu', 'Gérard');
-INSERT INTO entry VALUES ( 	9, 'Wolfgang Amadeus', 'Mozart');
-INSERT INTO entry VALUES ( 	10, 'Laboeuf', 'Shia');
