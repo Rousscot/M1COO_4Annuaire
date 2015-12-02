@@ -1,12 +1,12 @@
 package gui.customPanels;
 
 import domaine.Entry;
-import factory.Annuaire;
-import gui.panels.*;
+import gui.panels.CenterPanel;
+import gui.panels.DownPanel;
+import gui.panels.UpNumberPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 /**
  * Created by aurelien on 22/11/2015.
@@ -32,6 +32,7 @@ public class EntreesPanel extends JPanel {
 
 
     private void addPanelsToMainPanel() {
+        this.setLayout(new BorderLayout());
         this.add("North", upPanel);
         this.add("Center", centerPanel);
         this.add("South", downPanel);
