@@ -25,6 +25,7 @@ public class UpNumberPanel extends JPanel {
 
     public void initJList(Entry entry) {
         jList = new JList<>();
+        jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jList.setModel(new NumberListDataSource(entry));
     }
 

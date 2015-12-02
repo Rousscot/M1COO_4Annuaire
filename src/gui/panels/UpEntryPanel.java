@@ -25,6 +25,7 @@ public class UpEntryPanel extends JPanel {
 
     public void initJList(Annuaire annuaire) {
         jList = new JList<>();
+        jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jList.setModel(new EntryListDataSource(annuaire));
     }
 
