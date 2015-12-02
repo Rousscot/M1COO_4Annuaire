@@ -13,18 +13,16 @@ import java.awt.*;
  */
 public class EntreesPanel extends JPanel {
 
-    protected Entry entryController;
-    protected JPanel upPanel;
+    protected UpNumberPanel upPanel;
     protected JPanel centerPanel;
     protected JPanel downPanel;
 
     public EntreesPanel(Entry entryController){
-        this.entryController = entryController;
-        initPanels();
+        initPanels(entryController);
         addPanelsToMainPanel();
     }
 
-    private void initPanels() {
+    private void initPanels(Entry entryController) {
         upPanel = new UpNumberPanel(borderName(), entryController);
         centerPanel = new CenterPanel(firstLabel(), secondLabel());
         downPanel = new DownPanel();
@@ -54,4 +52,8 @@ public class EntreesPanel extends JPanel {
         return "Value";
     }
 
+    public void entreeController(Entry entry) {
+        upPanel.entryController(entry);
+
+    }
 }

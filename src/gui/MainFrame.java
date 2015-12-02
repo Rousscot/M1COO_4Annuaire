@@ -6,6 +6,8 @@ import gui.customPanels.AnnuairePanel;
 import gui.customPanels.EntreesPanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -13,7 +15,7 @@ import java.awt.event.*;
  *
  * @author ferlicot & rousseau
  */
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements ListSelectionListener {
 
     protected JPanel mainJPanel;
     protected AnnuairePanel annuaire;
@@ -44,5 +46,13 @@ public class MainFrame extends JFrame{
         mainJPanel = new JPanel();
         annuaire = new AnnuairePanel(annuaireController);
         entrees = new EntreesPanel(new NullEntry(null, null)); //We set it to null because the entry of this panel will be decide by the selection on the fist panel.
+        annuaire.addListener(this);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if(e.getValueIsAdjusting()){
+            entrees.entreeController(annuaire.getEntryAt(e.getFirstIndex()));
+        }
     }
 }

@@ -36,4 +36,7 @@ public class UpNumberPanel extends JPanel {
         jScrollPane.setPreferredSize(new Dimension(250, 250));
     }
 
+    public void entryController(Entry entry) {
+        jList.setModel(new NumberListDataSource(entry));
+    }
 }

@@ -1,6 +1,8 @@
 package gui.customPanels;
 
+import domaine.Entry;
 import factory.Annuaire;
+import gui.MainFrame;
 import gui.panels.CenterPanel;
 import gui.panels.DownPanel;
 import gui.panels.UpEntryPanel;
@@ -14,7 +16,7 @@ import java.awt.*;
 public class AnnuairePanel extends JPanel {
 
     protected Annuaire annuaireController;
-    protected JPanel upPanel;
+    protected UpEntryPanel upPanel;
     protected JPanel centerPanel;
     protected JPanel downPanel;
 
@@ -47,5 +49,13 @@ public class AnnuairePanel extends JPanel {
 
     public String secondLabel() {
         return "Prénom";
+    }
+
+    public void addListener(MainFrame frame) {
+        upPanel.addListener(frame);
+    }
+
+    public Entry getEntryAt(int index) {
+       return upPanel.getEntryAt(index);
     }
 }

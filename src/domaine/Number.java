@@ -86,7 +86,7 @@ public class Number {
 
     @Override
     public String toString() {
-        return "Number{id=" + this.id + ", code='" + this.code + ", value='" + this.value + ", entry=" + this.entry.getId() + '}';
+        return code.trim()+": "+ value.trim();
     }
 
     @Override

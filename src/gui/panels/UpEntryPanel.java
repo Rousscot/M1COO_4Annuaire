@@ -2,6 +2,7 @@ package gui.panels;
 
 import domaine.Entry;
 import factory.Annuaire;
+import gui.MainFrame;
 import gui.model.EntryListDataSource;
 
 import javax.swing.*;
@@ -36,4 +37,11 @@ public class UpEntryPanel extends JPanel {
         jScrollPane.setPreferredSize(new Dimension(250, 250));
     }
 
+    public void addListener(MainFrame frame) {
+        jList.addListSelectionListener(frame);
+    }
+
+    public Entry getEntryAt(int index) {
+        return jList.getModel().getElementAt(index);
+    }
 }
