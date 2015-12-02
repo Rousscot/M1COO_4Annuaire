@@ -1,8 +1,8 @@
 package gui.panels;
 
 import domaine.Entry;
-import factory.Annuaire;
-import gui.model.EntryListDataSource;
+import domaine.Number;
+import gui.model.NumberListDataSource;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,20 +12,20 @@ import java.awt.*;
 /**
  * Created by ferlicot & rousseau at Las Vegas
  */
-public class UpEntryPanel extends JPanel {
-    protected JList<Entry> jList;
+public class UpNumberPanel extends JPanel {
+    protected JList<Number> jList;
     protected JScrollPane jScrollPane;
     protected Border border;
 
-    public UpEntryPanel(String borderName, Annuaire annuaire) {
-        initJList(annuaire);
+    public UpNumberPanel(String borderName, Entry entry) {
+        initJList(entry);
         initScrollPane(borderName);
         this.add(jScrollPane);
     }
 
-    public void initJList(Annuaire annuaire) {
+    public void initJList(Entry entry) {
         jList = new JList<>();
-        jList.setModel(new EntryListDataSource(annuaire));
+        jList.setModel(new NumberListDataSource(entry));
     }
 
     public void initScrollPane(String borderName) {

@@ -1,5 +1,6 @@
 package gui;
 
+import domaine.NullEntry;
 import factory.Annuaire;
 import gui.customPanels.AnnuairePanel;
 import gui.customPanels.EntreesPanel;
@@ -42,6 +43,6 @@ public class MainFrame extends JFrame{
     public void initPanels(Annuaire annuaireController){
         mainJPanel = new JPanel();
         annuaire = new AnnuairePanel(annuaireController);
-        entrees = new EntreesPanel(annuaireController);
+        entrees = new EntreesPanel(new NullEntry(null, null)); //We set it to null because the entry of this panel will be decide by the selection on the fist panel.
     }
 }

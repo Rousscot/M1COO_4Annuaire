@@ -1,7 +1,8 @@
 package gui.customPanels;
 
+import domaine.Entry;
 import factory.Annuaire;
-import gui.panels.FullCustomPanel;
+import gui.panels.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,60 +11,44 @@ import java.awt.event.ActionListener;
 /**
  * Created by aurelien on 22/11/2015.
  */
-public class EntreesPanel extends FullCustomPanel {
+public class EntreesPanel extends JPanel {
 
-    protected Annuaire annuaireController;
+    protected Entry entryController;
+    protected JPanel upPanel;
+    protected JPanel centerPanel;
+    protected JPanel downPanel;
 
-    public EntreesPanel(Annuaire annuaireController){
-        super();
-        this.annuaireController = annuaireController;
-
+    public EntreesPanel(Entry entryController){
+        this.entryController = entryController;
+        initPanels();
+        addPanelsToMainPanel();
     }
 
-    public void addBehaviours(){
-        super.addBehaviours();
-        downPanel.getNettoyer().addActionListener(nettoyerActionListener());
+    private void initPanels() {
+        upPanel = new UpNumberPanel(borderName(), entryController);
+        centerPanel = new CenterPanel(firstLabel(), secondLabel());
+        downPanel = new DownPanel();
     }
 
-    // TODO set the values into the jList, modify it with the real values (Database instead of Annuaire)
-    public void refresh() {
+
+    private void addPanelsToMainPanel() {
+        this.add("North", upPanel);
+        this.add("Center", centerPanel);
+        this.add("South", downPanel);
     }
 
-    // TODO add the real behaviour -> add an Entry if the first+last name are filled, then refresh the jList
-    @Override
-    public ActionListener ajouterActionListener() {
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Entrées ajouter");
-            }
-        };
-        return actionListener;
-    }
 
-    // TODO add the real behaviour -> delete all Entries then refresh the jList
-    public ActionListener nettoyerActionListener(){
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DefaultListModel<String> model = new DefaultListModel<>();
-                upPanel.getJList().setModel(model);
-            }
-        };
-        return actionListener;
-    }
 
-    @Override
     public String borderName(){
         return "Entrees";
     }
 
-    @Override
+
     public String firstLabel() {
         return "Code";
     }
 
-    @Override
+
     public String secondLabel() {
         return "Value";
     }
