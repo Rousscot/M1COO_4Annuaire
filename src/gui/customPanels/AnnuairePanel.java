@@ -33,7 +33,7 @@ public class AnnuairePanel extends JPanel {
     }
 
     private void initPanels() {
-        upPanel = new UpEntryPanel(borderName());
+        upPanel = new UpEntryPanel(borderName(), annuaireController);
         centerPanel = new CenterPanel(firstLabel(), secondLabel());
         downPanel = new DownPanel();
     }

@@ -21,7 +21,6 @@ public class MainFrame extends JFrame{
     public MainFrame(Annuaire annuaireController) {
         initFrameParameters();
         initPanels(annuaireController);
-        addBehaviours();
         addPanelsToFrame();
     }
 
@@ -31,10 +30,6 @@ public class MainFrame extends JFrame{
         this.add(mainJPanel);
     }
 
-    public void addBehaviours(){
-        annuaire.getUpPanel().getJList().addMouseListener(entreesMouseListener());
-        annuaire.getDownPanel().getSupprimer().addActionListener(annuaireSupprimerActionListener());
-    }
 
     public void initFrameParameters(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,33 +43,5 @@ public class MainFrame extends JFrame{
         mainJPanel = new JPanel();
         annuaire = new AnnuairePanel(annuaireController);
         entrees = new EntreesPanel(annuaireController);
-    }
-
-    // TODO action on Entrees jList when an item on Annuaire jList is clicked
-    public MouseListener entreesMouseListener(){
-        MouseListener mouseListener = new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                String selected = annuaire.getUpPanel().getJList().getSelectedValue();
-                entrees.getUpPanel().getDefaultModel().removeAllElements();
-                entrees.getUpPanel().getDefaultModel().addElement(selected);
-            }
-        };
-        return mouseListener;
-    }
-
-    // TODO action on Annuaire jList when an item is clicked
-    public ActionListener annuaireSupprimerActionListener(){
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int index = annuaire.getUpPanel().getJList().getSelectedIndex();
-                DefaultListModel<String> stringDefaultListModel = (DefaultListModel)annuaire.getUpPanel().getJList().getModel();
-                stringDefaultListModel.remove(index);
-                annuaire.getUpPanel().getJList().setModel(stringDefaultListModel);
-
-            }
-        };
-        return actionListener;
     }
 }

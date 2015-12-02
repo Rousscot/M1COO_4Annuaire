@@ -86,7 +86,7 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "Entry{id=" + this.id +", lastName='" + this.lastName + ", firstName='" + this.firstName + ", numbers=" + this.numbers + '}';
+        return this.lastName.toUpperCase();
     }
 
     @Override
