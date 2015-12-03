@@ -9,7 +9,7 @@ import domaine.exceptions.EntryNotFoundException;
 import domaine.exceptions.NumberNotFoundException;
 import factory.Annuaire;
 import gui.panels.AnnuairePanel;
-import gui.panels.EntreesPanel;
+import gui.panels.EntryPanel;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -25,7 +25,7 @@ public class MainFrame extends JFrame implements ListSelectionListener {
 
     protected JPanel mainJPanel;
     protected AnnuairePanel annuaire;
-    protected EntreesPanel entrees;
+    protected EntryPanel entrees;
     protected Annuaire annuaireController;
 
     public MainFrame(Annuaire annuaireController) {
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame implements ListSelectionListener {
     public void initPanels(Annuaire annuaireController){
         mainJPanel = new JPanel();
         annuaire = new AnnuairePanel(annuaireController, this);
-        entrees = new EntreesPanel(new NullEntry(null, null), this); //We set it to null because the entry of this panel will be decide by the selection on the fist panel.
+        entrees = new EntryPanel(new NullEntry(null, null), this); //We set it to null because the entry of this panel will be decide by the selection on the fist panel.
         annuaire.addListener(this);
     }
 

@@ -97,7 +97,7 @@ public class Entry {
 
         Entry entry = (Entry) o;
 
-        return this.lastName.equals(entry.lastName) && this.firstName.equals(entry.firstName) && this.numbers.equals(entry.numbers);
+        return this.lastName.equals(entry.lastName) && this.firstName.equals(entry.firstName) ;
 
     }
 

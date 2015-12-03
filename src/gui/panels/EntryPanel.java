@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by aurelien on 22/11/2015.
  */
-public class EntreesPanel extends ApplicationPanel implements ActionListener {
+public class EntryPanel extends ApplicationPanel implements ActionListener {
 
     protected static final String BORDERNAME = "Entrees";
     protected Entry entryController;
@@ -26,7 +26,7 @@ public class EntreesPanel extends ApplicationPanel implements ActionListener {
     protected Border border;
     protected MainFrame owner;
 
-    public EntreesPanel(Entry entryController, MainFrame owner) {
+    public EntryPanel(Entry entryController, MainFrame owner) {
         this.entryController = entryController;
         this.owner = owner;
         initComponents();
@@ -55,7 +55,7 @@ public class EntreesPanel extends ApplicationPanel implements ActionListener {
 
     public void initComponents() {
         initJList();
-        initScrollPane(EntreesPanel.BORDERNAME);
+        initScrollPane(EntryPanel.BORDERNAME);
         numberForm = new NumberForm();
         buttonsBar = new EntryButtonsBar();
         buttonsBar.addListenerToAllButtons(this);
