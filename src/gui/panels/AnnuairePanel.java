@@ -76,7 +76,6 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //TODO : This need improvement but I don't have the time now.
         // This would be so easy if we had method level reflexivity…
         if (e.getActionCommand().equals("add")) {
             addEntry();
