@@ -51,7 +51,12 @@ public class MainFrame extends JFrame implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getValueIsAdjusting()){
-            entrees.entreeController(annuaire.getEntryAt(e.getFirstIndex()));
+            entrees.entreeController(annuaire.getEntryAt(e.getLastIndex()));
         }
+    }
+
+    public void refresh(){
+        annuaire.refresh();
+        entrees.refresh();
     }
 }

@@ -59,4 +59,8 @@ public class EntreesPanel extends JPanel {
     public void entreeController(Entry entry) {
         jList.setModel(new NumberListDataSource(entry));
     }
+
+    public void refresh() {
+        //TODO
+    }
 }

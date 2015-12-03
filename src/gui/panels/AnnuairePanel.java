@@ -1,7 +1,9 @@
 package gui.panels;
 
+import dao.exception.insert.EntryInsertException;
 import dao.exception.insert.NumberInsertException;
 import domaine.Entry;
+import domaine.exceptions.DuplicateEntryException;
 import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.EntryNotFoundException;
 import factory.Annuaire;
@@ -14,6 +16,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.HierarchyBoundsListener;
 
 /**
  * Created by aurelien on 22/11/2015.
@@ -21,10 +24,8 @@ import java.awt.event.ActionListener;
 public class AnnuairePanel extends ApplicationPanel implements ActionListener {
 
     protected static final String BORDERNAME = "Annuaire";
-    protected static final String FIRSTLABEL = "Nom";
-    protected static final String SECONDLABEL = "Prenom";
     protected Annuaire annuaireController;
-    protected CenterPanel centerPanel;
+    protected EntryForm entryForm;
     protected AnnuaireButtonsBar buttonsBar;
     protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
@@ -52,14 +53,14 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     public void addPanelsToMainPanel() {
         this.setLayout(new BorderLayout());
         this.add("North", jScrollPane);
-        this.add("Center", centerPanel);
+        this.add("Center", entryForm);
         this.add("South", buttonsBar);
     }
 
     public void initComponents() {
         initJList(annuaireController);
         initScrollPane(AnnuairePanel.BORDERNAME);
-        centerPanel = new CenterPanel(AnnuairePanel.FIRSTLABEL, AnnuairePanel.SECONDLABEL);
+        entryForm = new EntryForm();
         buttonsBar = new AnnuaireButtonsBar();
         buttonsBar.addListenerToAllButtons(this);
     }
@@ -77,7 +78,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         //TODO : This need improvement but I don't have the time now.
         // This would be so easy if we had method level reflexivity…
         if (e.getActionCommand().equals("add")) {
-            addNumberToSelectedEntry();
+            addEntry();
         } else if (e.getActionCommand().equals("delete")) {
             removeSelectedNumber();
         } else if (e.getActionCommand().equals("clean")) {
@@ -88,7 +89,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     }
 
     public void cleanFields() {
-        centerPanel.cleanFields();
+        entryForm.cleanFields();
     }
 
     public void removeSelectedNumber() {
@@ -102,6 +103,17 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
             } catch (EntryNotFoundException e) {
                 JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
             }
+        }
+    }
+
+    public void addEntry() {
+        try {
+            annuaireController.createEntry(firstName(), lastName());
+            refresh();
+        } catch (EntryInsertException e) {
+            JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
+        } catch (DuplicateEntryException e) {
+            JOptionPane.showMessageDialog(this, "Ce contact existe déjà.");
         }
     }
 
@@ -123,11 +135,11 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     }
 
     public String lastName() {
-        return centerPanel.firstName();
+        return entryForm.firstName();
     }
 
     public String firstName() {
-        return centerPanel.lastName();
+        return entryForm.lastName();
     }
 
     public void refresh() {
