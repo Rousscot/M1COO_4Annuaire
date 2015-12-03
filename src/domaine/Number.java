@@ -31,10 +31,6 @@ public class Number {
 
     //CONSTRUCTORS
 
-    public Number(String code, String value) {
-        this(0L, code, value, null);
-    }
-
     public Number(String code, String value, Entry entry) {
         this(0L, code, value,entry);
     }

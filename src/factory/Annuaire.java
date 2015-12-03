@@ -1,5 +1,7 @@
 package factory;
 
+import dao.exception.delete.EntryDeleteException;
+import dao.exception.delete.NumberDeleteException;
 import dao.exception.insert.EntryInsertException;
 import dao.exception.insert.NumberInsertException;
 import dao.implement.EntryDAO;
@@ -11,7 +13,6 @@ import domaine.exceptions.EntryNotFoundException;
 import domaine.exceptions.NumberNotFoundException;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -40,13 +41,13 @@ public class Annuaire {
 
     public Annuaire createNumberFor(Entry entry, String code, String value) throws NumberInsertException, DuplicateNumberException, EntryNotFoundException {
         if (this.entries.contains(entry)) {
-            entry.createNumber(code, value);
+            entry.createNumber(entry, code, value);
             return this;
         }
         throw new EntryNotFoundException(entry);
     }
 
-    public Annuaire deleteNumberOf(Entry entry, Number number) throws EntryNotFoundException, NumberNotFoundException {
+    public Annuaire deleteNumberOf(Entry entry, Number number) throws EntryNotFoundException, NumberNotFoundException, NumberDeleteException {
         if (this.entries.contains(entry)) {
             entry.deleteNumber(number);
             return this;
@@ -54,9 +55,10 @@ public class Annuaire {
         throw new EntryNotFoundException(entry);
     }
 
-    public Annuaire deleteEntry(Entry entry) throws EntryNotFoundException {
+    public Annuaire deleteEntry(Entry entry) throws EntryNotFoundException, EntryDeleteException {
         if (this.entries.contains(entry)) {
             this.entries.remove(entry);
+            (new EntryDAO()).delete(entry);
             return this;
         }
         throw new EntryNotFoundException(entry);

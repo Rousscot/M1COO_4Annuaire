@@ -1,10 +1,10 @@
 package gui.panels;
 
+import dao.exception.delete.EntryDeleteException;
 import dao.exception.insert.EntryInsertException;
-import dao.exception.insert.NumberInsertException;
 import domaine.Entry;
+import domaine.NullEntry;
 import domaine.exceptions.DuplicateEntryException;
-import domaine.exceptions.DuplicateNumberException;
 import domaine.exceptions.EntryNotFoundException;
 import factory.Annuaire;
 import gui.MainFrame;
@@ -16,7 +16,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.HierarchyBoundsListener;
 
 /**
  * Created by aurelien on 22/11/2015.
@@ -30,8 +29,10 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     protected JList<Entry> jList;
     protected JScrollPane jScrollPane;
     protected Border border;
+    protected MainFrame owner;
 
-    public AnnuairePanel(Annuaire annuaireController) {
+    public AnnuairePanel(Annuaire annuaireController, MainFrame owner) {
+        this.owner = owner;
         this.annuaireController = annuaireController;
         initComponents();
         addPanelsToMainPanel();
@@ -69,8 +70,8 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         jList.addListSelectionListener(frame);
     }
 
-    public Entry getEntryAt(int index) {
-        return jList.getModel().getElementAt(index);
+    public Entry getEntrySelected() {
+        return jList.getSelectedValue();
     }
 
     @Override
@@ -80,7 +81,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         if (e.getActionCommand().equals("add")) {
             addEntry();
         } else if (e.getActionCommand().equals("delete")) {
-            removeSelectedNumber();
+            removeSelectedEntry();
         } else if (e.getActionCommand().equals("clean")) {
             cleanFields();
         } else {
@@ -92,7 +93,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         entryForm.cleanFields();
     }
 
-    public void removeSelectedNumber() {
+    public void removeSelectedEntry() {
         Entry entry = jList.getSelectedValue();
         if (entry == null) {
             JOptionPane.showMessageDialog(this, "Pas de contact selectionné.");
@@ -100,7 +101,8 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
             try {
                 annuaireController.deleteEntry(entry);
                 refresh();
-            } catch (EntryNotFoundException e) {
+                owner.refreshNumbersWith(new NullEntry(null, null));
+            } catch (EntryNotFoundException | EntryDeleteException e) {
                 JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
             }
         }
@@ -117,23 +119,6 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
         }
     }
 
-    public void addNumberToSelectedEntry() {
-        //TODO remove duplication, I miss real lambda :(
-        Entry entry = jList.getSelectedValue();
-        if (entry == null) {
-            JOptionPane.showMessageDialog(this, "Pas de contact selectionné.");
-        } else {
-            try {
-                annuaireController.createNumberFor(entry, firstName(), lastName());
-                refresh();
-            } catch (NumberInsertException | EntryNotFoundException e) {
-                JOptionPane.showMessageDialog(this, "Une erreur s'est produite. Veuillez réessayer plus tard.");
-            } catch (DuplicateNumberException e) {
-                JOptionPane.showMessageDialog(this, "Ce contact poséde déjà ce numéro.");
-            }
-        }
-    }
-
     public String lastName() {
         return entryForm.firstName();
     }
@@ -143,7 +128,7 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
     }
 
     public void refresh() {
-        jList.repaint();
-        //TODO refresh the number pane
+        //I don't know why but the repaint or revalidate doesn't work :(
+        jList.setModel(new EntryListDataSource(annuaireController));
     }
 }

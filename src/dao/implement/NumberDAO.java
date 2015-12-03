@@ -2,11 +2,9 @@ package dao.implement;
 
 import dao.DAO;
 import dao.exception.delete.NumberDeleteException;
-import dao.exception.find.EntryNotFoundInDBException;
 import dao.exception.find.NumberNotFoundInDBException;
 import dao.exception.insert.NumberInsertException;
 import dao.exception.update.NumberUpdateFailedException;
-import domaine.Entry;
 import domaine.Number;
 
 import java.sql.PreparedStatement;
@@ -41,7 +39,7 @@ public class NumberDAO extends DAO<Number> {
 
         try {
             // If the Entry does not exist we insert it into the database.
-            if (number.getEntryId() == 0L) {
+            if (number.getId() != null && number.getEntryId() == 0L) {
                 number.setEntry((new EntryDAO()).create(number.getEntry()));
             }
 

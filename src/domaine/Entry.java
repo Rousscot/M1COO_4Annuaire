@@ -1,5 +1,6 @@
 package domaine;
 
+import dao.exception.delete.NumberDeleteException;
 import dao.exception.insert.NumberInsertException;
 import dao.implement.NumberDAO;
 import domaine.exceptions.DuplicateNumberException;
@@ -130,26 +131,30 @@ public class Entry {
      * @param number the number I need to delete.
      * @return myself to allow cascade if needed.
      * @throws NumberNotFoundException If the number is not in the numbers.
+     * @throws NumberDeleteException IF there is a problem with the delete
      */
-    public Entry deleteNumber(Number number) throws NumberNotFoundException {
-        if(this.numbers.contains(number)){
+    public Entry deleteNumber(Number number) throws NumberNotFoundException, NumberDeleteException {
+        if(!this.numbers.contains(number)){
             throw new NumberNotFoundException(number);
         }
         this.numbers.remove(number);
+        (new NumberDAO()).delete(number);
         return this;
     }
 
     /**
      * I am a method that create a new number and add it to my numbers.
      *
+     *
+     * @param entry
      * @param code the code of the number.
      * @param value the value on the number.
      * @return myself to allow cascade if needed.
      * @throws NumberInsertException raised if there is a problem with the insertion of the number in the database.
      * @throws DuplicateNumberException raised if the number already exist.
      */
-    public Entry createNumber(String code, String value) throws NumberInsertException, DuplicateNumberException {
-        this.addNumber((new NumberDAO()).create(new Number(code, value)));
+    public Entry createNumber(Entry entry, String code, String value) throws NumberInsertException, DuplicateNumberException {
+        this.addNumber((new NumberDAO()).create(new Number( code, value, entry)));
         return this;
     }
 

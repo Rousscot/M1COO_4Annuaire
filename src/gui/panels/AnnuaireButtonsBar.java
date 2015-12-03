@@ -10,9 +10,9 @@ public class AnnuaireButtonsBar extends AbstractButtonBar {
     }
 
     public void initButtons() {
-        createButton("Ajouter", "Je permet d'ajouter un bouton à une entrée.", "add");
-        createButton("Supprimer", "Je permet de supprimer une entrée.", "delete");
-        createButton("Nettoyer", "Je permet de vider les champs.", "clean");
+        createButton("Ajouter", "Je permets d'ajouter une entrée à un Annuaire.", "add");
+        createButton("Supprimer", "Je permets de supprimer une entrée.", "delete");
+        createButton("Nettoyer", "Je permets de vider les champs.", "clean");
     }
 
 }
