@@ -13,13 +13,13 @@ import java.sql.SQLException;
  */
 public class ConnectionBdd {
 
-    protected String url = "jdbc:postgresql://postgresql1.alwaysdata.com:5432/cestpasfaux_annuaire";
+    //protected String url = "jdbc:postgresql://postgresql1.alwaysdata.com:5432/cestpasfaux_annuaire";
 
-    protected String user = "cestpasfaux";
+    //protected String user = "cestpasfaux";
 
-    //protected String url = "jdbc:postgresql://webtp.fil.univ-lille1.fr:5432/ferlicotdelbe";
+    protected String url = "jdbc:postgresql://webtp.fil.univ-lille1.fr:5432/ferlicotdelbe";
 
-    //protected String user = "ferlicotdelbe";
+    protected String user = "ferlicotdelbe";
 
 
     protected String passwd;
@@ -36,7 +36,7 @@ public class ConnectionBdd {
             System.out.println("Driver O.K.");
             System.out.println("Password");
             //this.passwd = (new BufferedReader(new InputStreamReader(System.in))).readLine();
-            this.passwd = "cotelette";
+            this.passwd = "genji1&2";
             connection = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connection O.K.");
         } catch (ClassNotFoundException e) {

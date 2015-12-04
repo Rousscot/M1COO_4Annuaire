@@ -67,8 +67,7 @@ public class EntryPanel extends ApplicationPanel implements ActionListener {
     }
 
     public void refresh() {
-        //I don't know why but the repaint or revalidate doesn't work :(
-        jList.setModel(new NumberListDataSource(entryController));
+        jList.repaint();
     }
 
     @Override

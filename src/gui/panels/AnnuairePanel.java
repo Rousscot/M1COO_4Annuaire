@@ -128,6 +128,6 @@ public class AnnuairePanel extends ApplicationPanel implements ActionListener {
 
     public void refresh() {
         //I don't know why but the repaint or revalidate doesn't work :(
-        jList.setModel(new EntryListDataSource(annuaireController));
+        jList.repaint();
     }
 }

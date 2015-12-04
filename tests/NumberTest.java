@@ -10,7 +10,7 @@ public class NumberTest {
 
     @Before
     public void setUp(){
-        numberTest = new Number("Test","01.23.45.67");
+        numberTest = new Number("Test","01.23.45.67", null);
     }
 
     @After
@@ -20,7 +20,7 @@ public class NumberTest {
 
     @Test
     public void testEquals(){
-        Number numberTest2 = new Number("Test", "01.23.45.67");
+        Number numberTest2 = new Number("Test", "01.23.45.67", null);
         Assert.assertEquals("The Numbers are not equals ?", numberTest, numberTest2);
         int oneCode = numberTest.hashCode();
         Assert.assertEquals("Hash code not equal ?", oneCode, numberTest2.hashCode());

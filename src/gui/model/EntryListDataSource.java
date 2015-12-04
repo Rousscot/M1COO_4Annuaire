@@ -9,7 +9,7 @@ import javax.swing.event.ListDataListener;
 /**
  * Created by rousseaua on 30/11/15.
  */
-public class EntryListDataSource extends DefaultListModel<Entry> {
+public class EntryListDataSource extends AbstractListModel<Entry> {
     protected Annuaire annuaire;
 
     public EntryListDataSource(Annuaire annuaire) {

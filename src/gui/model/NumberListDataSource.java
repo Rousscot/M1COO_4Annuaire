@@ -9,7 +9,7 @@ import javax.swing.event.ListDataListener;
 /**
  * Created by rousseaua on 30/11/15.
  */
-public class NumberListDataSource extends DefaultListModel<Number> {
+public class NumberListDataSource extends AbstractListModel<Number> {
     protected Entry entry;
 
     public NumberListDataSource(Entry entry) {
